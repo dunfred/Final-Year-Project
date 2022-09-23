@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+{% endblock custom_styles %}
+
+
 {% block main_body %}
 <body>
     <div class="wrapper">
@@ -14,7 +21,7 @@
                 <div class="submit-form">Submit</div>
                 
                 <div class="redirect">
-                    <div>I remember my password!<a href="{% url 'cousellor:login' %}">login</a></div>
+                    <div>I remember my password!<a href="{% url 'counsellor:login' %}">login</a></div>
                 </div>
             </form>
         </div>

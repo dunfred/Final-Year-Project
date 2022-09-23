@@ -13,8 +13,12 @@
         <ul class="menu">
             <li><a href="{% url 'counsellor:about' %}">About</a></li>
             <li><a href="{% url 'counsellor:confidential' %}">Terms & Conditions</a></li>
-            <li><a href="{% url 'counsellor:support' %}">Support</a></li>     
-            <li><a href="{% url 'counsellor:login' %}">Login</a></li>             
+            <li><a href="{% url 'counsellor:support' %}">Support</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'counsellor:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>             
+            {% endif %}
         </ul>
     </nav> 
     

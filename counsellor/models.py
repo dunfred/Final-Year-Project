@@ -1,13 +1,13 @@
 from django.db import models
 from iCounsel.mixin import TimeStampMixin
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from counsellor.enums import Gender, StringBoolChoices, UserType, Religion, Level, MaritalStatus
 from counsellor.managers import CustomUserManager, CustomCounsellorManager
 from counsellor.constants import *
 
 # Create your models here.
-class User(TimeStampMixin, AbstractBaseUser):
+class User(TimeStampMixin, AbstractUser):
     username        = models.CharField(_('Username'), null=False, blank=True, unique=True, max_length=120)
     email           = models.EmailField(_('Email'), null=False, blank=True, unique=True, max_length=120)
     first_name      = models.CharField(_('First Name'), max_length=100)
@@ -21,7 +21,8 @@ class User(TimeStampMixin, AbstractBaseUser):
     religion        = models.CharField(_("Religion"), max_length=50, default=Religion.OTHER, choices=Religion.choices())
     marital_status  = models.CharField(_("Marital Status"), max_length=50, default=MaritalStatus.SINGLE, choices=MaritalStatus.choices())
     phone           = models.CharField(_('phone'), blank=False, null=False, max_length=10, unique=True)
-    show_name       = models.BooleanField(default=StringBoolChoices.NO, choices=StringBoolChoices.choices())
+    address             = models.TextField(_("Address"), blank=True, null=True)
+    show_name       = models.CharField(default=StringBoolChoices.NO, max_length=10, choices=StringBoolChoices.choices())
 
     objects = CustomUserManager()
 
@@ -36,9 +37,10 @@ class User(TimeStampMixin, AbstractBaseUser):
         return f"{self.first_name} {self.last_name}".strip().title()
 
     def __str__(self):
+        print(self.user_type.title())
         if self.show_name:
-            return f"{self.user_type}:\t{self.get_full_name()}".upper()
-        return f"{self.user_type}:\t{str(self.email)}".upper()
+            return f"{self.get_full_name()}".upper()
+        return f"{str(self.email)}".upper()
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
@@ -51,19 +53,13 @@ class User(TimeStampMixin, AbstractBaseUser):
         return True
 
 
-class Cousellor(TimeStampMixin, AbstractBaseUser):
+class Counsellor(User):
     username        = None
-    email           = models.EmailField(_('Email'), null=False, blank=True, unique=True, max_length=120)
-    first_name      = models.CharField(_('First Name'), max_length=100)
-    last_name       = models.CharField(_('Last Name'), max_length=100)
-    other_names     = models.CharField(_('Other Names'), max_length=100, blank=True, null=True)
-    is_active       = models.BooleanField(_('Active'), default=False)
-    is_staff        = models.BooleanField(_('Admin Access'), default=False)
-    is_superuser    = models.BooleanField(_('Superuser'), default=False)
-    sex             = models.CharField(_("Sex/Gender"), max_length=20, default=Gender.UNKNOWN, choices=Gender.choices())
-    phone           = models.CharField(_('phone'), blank=False, null=False, max_length=16, unique=True)
-    available       = models.BooleanField(_('last_login'), default=False)
-    date_joined     = models.DateTimeField(auto_now_add=True)
+    user_type       = None
+    religion        = None
+    marital_status  = None
+    show_name       = None
+    available       = models.BooleanField(_('Available'), default=False)
 
     objects = CustomCounsellorManager()
 
@@ -94,7 +90,7 @@ class Cousellor(TimeStampMixin, AbstractBaseUser):
 
 class Consent(TimeStampMixin, models.Model):
     user                = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_consents")
-    counselor           = models.ForeignKey(Cousellor, on_delete=models.SET_NULL, related_name="cousellor_consents", null=True, blank=True)
+    counselor           = models.ForeignKey(Counsellor, on_delete=models.SET_NULL, related_name="cousellor_consents", null=True, blank=True)
 
     # Student fields 
     registration_number = models.CharField(_("Registration Number"), default=None, max_length=25, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
@@ -112,7 +108,6 @@ class Consent(TimeStampMixin, models.Model):
     # General fields
     emergency_person    = models.CharField(_("Emergency Contact Name"), default=None, max_length=100, blank=True, null=True)
     emergency_contact   = models.CharField(_("Emergency Contact Phone"), default=None, max_length=10, blank=True, null=True)
-    address             = models.TextField(_("Address"), blank=True, null=True)
     
     # Other information
     referrer            = models.TextField(_("Referrer"), blank=True, null=True, help_text="Whom may we thank for referring you?")

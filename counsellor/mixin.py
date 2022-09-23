@@ -2,5 +2,6 @@ class EnumChoiceToTupleMixin():
 
     @classmethod
     def choices(cls):
-        return [(choice, choice.value) for choice in cls]
+        # print([(choice.name, choice.value,) for choice in cls])
+        return [(choice.name, choice.value,) for choice in cls]
 

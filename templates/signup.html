@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock custom_styles %}
 
 {% block main_body %}
 	
