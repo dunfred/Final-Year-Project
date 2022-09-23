@@ -21,7 +21,7 @@ class User(TimeStampMixin, AbstractUser):
     religion        = models.CharField(_("Religion"), max_length=50, default=Religion.OTHER, choices=Religion.choices())
     marital_status  = models.CharField(_("Marital Status"), max_length=50, default=MaritalStatus.SINGLE, choices=MaritalStatus.choices())
     phone           = models.CharField(_('phone'), blank=False, null=False, max_length=10, unique=True)
-    address             = models.TextField(_("Address"), blank=True, null=True)
+    address         = models.TextField(_("Address"), blank=True, null=True)
     show_name       = models.CharField(default=StringBoolChoices.NO, max_length=10, choices=StringBoolChoices.choices())
 
     objects = CustomUserManager()
@@ -39,7 +39,7 @@ class User(TimeStampMixin, AbstractUser):
     def __str__(self):
         print(self.user_type.title())
         if self.show_name:
-            return f"{self.get_full_name()}".upper()
+            return f"{self.get_full_name()} | {self.email}".upper()
         return f"{str(self.email)}".upper()
 
     def has_perm(self, perm, obj=None):
@@ -74,9 +74,7 @@ class Counsellor(User):
         return f"{self.first_name} {self.last_name}".strip().title()
 
     def __str__(self):
-        if self.show_name:
-            return self.get_full_name()
-        return str(self.email).upper()
+        return f"{self.get_full_name()} | {self.email}".upper()
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

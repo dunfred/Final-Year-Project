@@ -1,5 +1,6 @@
 import requests
 from django.contrib import auth
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -28,9 +29,9 @@ def login_client(request):
 
         print(email,password)
 
-        user = auth.authenticate(email=email, password=password)
-        print(user)
-        auth.login(request, user, backend='counsellor.backend.MultipleAuthBackend')
+        user = authenticate(email=email, password=password)
+
+        login(request, user, backend='counsellor.backend.MultipleAuthBackend')
 
         # Check if user was attempting to visit another page
         url = request.META.get('HTTP_REFERER')
@@ -55,24 +56,37 @@ def login_counsellor(request):
     if request.method == 'POST':
         email    = request.POST.get('email')
         password = request.POST.get('password')
-
-        print(email,password)
-
-        user = auth.authenticate(request, email=email, password=password, data_type="counsellor")
-        auth.login(request, user, backend='counsellor.backend.MultipleAuthBackend')
-
-        # Check if user was attempting to visit another page
-        url = request.META.get('HTTP_REFERER')
+        
+        authenticate_kwargs = {
+            'email': email,
+            'password': password,
+        }
+        authenticate_kwargs['data_type'] = 'counsellor'  # Add data_type
         try:
-            query = requests.utils.urlparse(url).query
-            params = dict(x.split('=') for x in query.split('&'))
+            authenticate_kwargs['request'] = request
+        except KeyError:
+            pass
 
-            if 'next' in params:
-                nextPage = params['next']
-                return redirect(nextPage)
-        except Exception as e:
-            print(e)
-            return redirect('counsellor:home')
+        user = authenticate(**authenticate_kwargs)
+
+        if user:
+            login(request, user, backend='counsellor.backend.MultipleAuthBackend')
+
+            # Check if user was attempting to visit another page
+            url = request.META.get('HTTP_REFERER')
+            try:
+                query = requests.utils.urlparse(url).query
+                params = dict(x.split('=') for x in query.split('&'))
+
+                if 'next' in params:
+                    nextPage = params['next']
+                    return redirect(nextPage)
+            except Exception as e:
+                print(e)
+                return redirect('counsellor:home')
+        else:
+            print('No such account exists')
+            return redirect('.')
 
 
     return render(request, template, context)
@@ -80,8 +94,8 @@ def login_counsellor(request):
 
 
 @login_required(login_url='user:login_client')
-def logout(request):
-    auth.logout(request)
+def logout_view(request):
+    logout(request)
     return redirect('counsellor:login_client')
 
 
