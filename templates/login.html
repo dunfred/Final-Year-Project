@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main_body %}
+<body>
+    <div class="wrapper">
+        <div class="container">
+                <div class="sub-header">Login</div>
+
+                <form  method="POST" action="{% url 'counsellor:login' %}">
+                    {% csrf_token %}
+
+                    <div class="layout">
+                        <input type="email" placeholder="Student Email"/>
+                    </div>
+
+                    <div class="layout">
+                        <input type="password" placeholder="Password"/>
+                    </div>
+                    
+                    <div class="forgot-password"><a href="{% url 'cousellor:forgot_password' %}">Forgot password?</a></div>
+            
+                    <a  href="{% url 'counsellor:home' %}">
+                        <div  class="submit-form">login</div>
+                    </a>
+                    
+                    <div class="redirect">
+                        <div>Don't have an account?<a href="{% url 'counsellor:register' %}">Sign up</a></div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock main_body %}
