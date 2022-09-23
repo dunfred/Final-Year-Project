@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock custom_styles %}
+
+{% block main_body %}
+	
+<body>
+    <div class="wrapper"> 
+        <div class="container">
+                <div class="sub-header">Sign Up</div>
+
+                <form method="POST" action="{% url 'counsellor:register' %}">
+                    {% csrf_token %}
+                    <div class="layout">
+                        <input type="text" placeholder="First Name"/>
+                    </div>
+
+                    <div class="layout">
+                        <input type="text" placeholder="Last Name"/>
+                    </div>
+                    
+                    <div class="layout">
+                        <input type="email" placeholder="Student Email"/>
+                    </div>
+
+                    <div class="layout">
+                        <input type="password" placeholder="Password"/>
+                    </div>
+                    
+                    <a href="{% url 'counsellor:confidential' %}">
+                        <div class="submit-form">Sign Up</div>
+                    </a>
+                    
+                    <div class="redirect">
+                        <div>
+                            Already have an account?<a href="{% url 'counsellor:login' %}">Login</a>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock main_body %}

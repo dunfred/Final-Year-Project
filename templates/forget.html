@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/forget.css' %}">
+{% endblock custom_styles %}
+
+
+{% block main_body %}
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="sub-header">Forgot Password</div>
+            
+            <form>
+                <div class="layout">
+                    <input type="email" placeholder="Student Email"/>
+                </div>
+                
+                <div class="submit-form">Submit</div>
+                
+                <div class="redirect">
+                    <div>I remember my password!<a href="{% url 'counsellor:login' %}">login</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock main_body %}
+

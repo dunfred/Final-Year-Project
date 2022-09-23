@@ -10,23 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()  # take environment variables from .env.
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g-&55eqs==&#26(qe3w%^^45sbd1+une5hot6ujrnq5u_2r-h2'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = eval(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
+ROOT_DOMAIN = os.getenv('ROOT_DOMAIN')
 
 # Application definition
 
@@ -37,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Custom Apps
+    'counsellor.apps.CounsellorConfig',
+    'session.apps.SessionConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +62,9 @@ ROOT_URLCONF = 'iCounsel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,6 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'counsellor.User'
+
+AUTHENTICATION_BACKENDS = ['counsellor.backend.MultipleAuthBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -118,3 +131,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'media/'
+
+SESSION_EXPIRE_SECONDS = 60 * 360
+
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

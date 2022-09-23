@@ -1,0 +1,281 @@
+/*Sage style variables*/
+:root{
+    --sage-bg-gray: #E3E7EC;
+    --sage-bg-black: #1d252d;
+    --primary-color: #5037F5;
+    --primary-color-50: #eee7fe;
+    --primary-color-100: #E4D8FF;
+    --primary-color-300: #6753ec;
+    --nav-shadow: 0px 30px 150px 10px rgba(0, 0, 0, 0.11);
+    --sage-shadow: 0px 30px 60px 10px rgba(0, 0, 0, 0.11);
+    --title-font-size: 38px;
+    --sage-font-size: 52px;
+    --sage-font-weight: 700;
+    --sage-padding: 0px 20px;
+}
+ 
+/*Responsive mobile first view*/
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    color: #1d252d;
+    transition: all .8s;
+}
+
+a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+nav{
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    background-color: #FFFFFF;
+    top: 0;
+    z-index: 99;
+    box-shadow: var(--nav-shadow);
+}
+
+.logo{
+     margin: 20px 0px 0px 30px;
+    float: left;
+}
+
+a img{
+    width: 40px;
+}
+
+.menu { 
+    list-style: none;
+    float: right;
+    position: relative;
+}
+
+.menu li{
+    display: inline-block;
+    margin: 20px 0px 0px 0px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--sage-bg-black);
+    font-size: 16px;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0px 30px;
+} 
+
+.menu li a:last-child{
+    margin-right: 32px;
+}
+
+.menu li a:hover{
+    background-color: var(--primary-color-50);
+    border-radius: 8px;
+    transition: all .7s;
+}
+
+.menu li a:active{
+    background-color: var(--primary-color-50);
+}
+
+label {
+    margin: 0 40px 0 0;
+    font-size: 30px;
+    line-height: 80px;
+    width: 25px;
+    float: right;
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
+
+
+/*Submit button CSS styling*/
+.submit-form{
+    background-color: var(--primary-color);
+    width: 100%;
+    margin-top: 32px;
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.10); 
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.submit-form:hover{
+    background-color: var(--primary-color-300);
+    transition: all .4s;
+}
+
+.submit-form:active{
+    background-color: var(--primary-color-300);
+}
+
+
+/*User form card styling*/
+.container{
+    width: 600px;
+    padding: 30px 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    /* box-shadow: 0 15px 25px rgba(0,0,0,0.10);  */
+}
+
+
+
+
+
+
+
+footer{
+    background-color: var(--sage-bg-black); 
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+footer .footer-links{
+    padding-top: 40px;
+}
+
+footer .footer-links li{
+    display: block;
+    margin: 16px 32px;
+}
+
+footer .footer-links li a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+footer .footer-links li a:hover{
+    color: var(--primary-color);
+    transition: all .3s;
+}
+
+.footer li a:active{
+    color: var(--primary-color);
+}
+
+.footer-copyright{
+    text-align: center;
+    color: #c3c3c3;
+    padding: 40px 0px;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
+/*Responsive Desktop view*/
+@media only screen and (min-width: 768px){
+    footer .footer-links li{
+        margin: 15px 60px;
+    }
+}
+
+
+
+    
+    
+    
+    
+    
+     
+    
+    
+    
+/*Responsive Tablet view*/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    
+}
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+
+
+/*Responsive Mobile Navbar view*/
+@media only screen and (max-width: 768px) {
+    label {
+        display: block;
+        cursor: pointer;
+        transition: all .3s;
+    }
+
+    .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        top: 80px;
+        right: -100%;
+        text-align: center;
+        z-index: 99;
+        background-color: #ffffff;
+        transition: all .5s;
+    }
+
+    .menu li{
+        display: block;
+        margin: 0;
+    }
+    
+    .menu li:last-child{
+        margin-right: 0; 
+    }
+
+    .menu li::after{
+        content: " ";
+        border: none;
+    }
+    
+    .menu li a {
+        display: block;
+        margin: 0;
+        font-size: 21px;
+        font-weight: 600;
+        padding: 20px 0px;
+    }
+
+    #toggle:checked ~ .menu {
+        display: block;
+        right: 0;
+        transition: all .6s;
+    }
+    
+    footer .footer-links li a{
+        font-size: 0.8rem;
+    }
+}
+
+
+
+    
