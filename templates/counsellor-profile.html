@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/counsellor-profile.css' %}">
+{% endblock custom_styles %}
+
+
+{% block main_body %}	
+    <body>
+        <div class="counsellor-profile-container">
+            <div class="counsellor-profile-nav">
+                <a href="#" class="back-to-home">
+                    <img src="{% static 'favicon/arrow-left.svg' %}" alt=" arrow left"/>
+                    Counsellor profile
+                </a>
+                <div class="counsellor-card">
+                    <div class="counsellor-image">
+                        {% if counsellor.profile %}
+                            <img src="{{ counsellor.profile.url }}" alt=" profile picture"/>
+                        {% else %}
+                            <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
+                        {% endif %}
+                    </div>
+                    <div class="counsellor-detail-wrap">
+                        <div class="counsellor-name">
+                            {{ counsellor.title|title}}. {{ counsellor.get_full_name|title}}
+                        </div>
+                        <div class="counsellor-category-wrap">
+                            <div class="counsellor-category">{{ categories_str}} Counsellor</div>
+                        </div>
+                        <div class="counsellor-title">
+                            Head of Counselling Department
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-cta">
+                    <form submit="index.html" class="cta-icons">
+                        <a class="cta-icon" href="tel:{{counsellor.phone}}">
+                            <img src="{% static 'favicon/call.svg' %}" alt=" call"/>
+                        </a>
+                        <a class="cta-icon" href="mailto:{{counsellor.email}}">
+                            <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
+                        </a>
+                    </form> 
+                    <button class="book-cta">Book Appointment</button>
+                </div> 
+            </div>
+
+
+
+            <!-- Details on counsellors Bio Section -->
+            <div class="counsellor-details">
+                <div class="counsellor-detail">
+                    <div class="counsellor-detail-header">Bio</div>
+                    {{counsellor.description}}
+                </div>
+                <div class="availability">
+                    <div class="counsellor-detail-header">Availability</div>
+                    <ul class="days">
+                        {% for day in available_days %}
+                            <li>{{day|upper}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <!-- Modal for booking appointment -->
+        <div class="book-modal-container" hidden>
+            <div class="book-modal">
+                <div class="book-modal-wrap">
+                    <div class="book-modal-title">
+                        <div class="book-modal-title-h1">Book Appointment</div>
+                        <img src="{% static 'favicon/cancel.svg' %}" alt="Cancel Icon">
+                    </div>
+                    <div class="book-modal-types">
+                        <div class="book-modal-type">
+                            <div class="book-modal-type-header">
+                                <img src="{% static 'images/googlemeet.png' %}" alt="zoom Icon">
+                                <div class="book-modal-type-title">
+                                    <div class="book-modal-type-title-h1">Google Calendar</div>
+                                    <div class="book-modal-type-title-sub">Meet in Person</div>
+                                </div>
+                            </div>
+                            <div class="book-modal-type-detail">Schedule your appointment day and time counsellor on your Google Calendar</div>
+                        </div>
+                        <div class="book-modal-type">
+                            <div class="book-modal-type-header">
+                                <img src="{% static 'images/zoom.png' %}" alt="zoom Icon">
+                                <div class="book-modal-type-title">
+                                    <div class="book-modal-type-title-h1">Zoom Meeting</div>
+                                    <div class="book-modal-type-title-sub">Video Call Meeting</div>
+                                </div>
+                            </div>
+                            <div class="book-modal-type-detail">Schedule your online video call appointment with this counsellor via zoom</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </body>
+{% endblock main_body %}
+
+{% block custom_html %}
+{% endblock custom_html %}

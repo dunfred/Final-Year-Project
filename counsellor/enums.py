@@ -10,16 +10,16 @@ class UserType(EnumChoiceToTupleMixin, Enum):
 class Gender(EnumChoiceToTupleMixin, Enum):
     MALE    = 'male'
     FEMALE  = 'female'
-    UNKNOWN  = 'unknown'
+    UNKNOWN = 'unknown'
 
     
 class MaritalStatus(EnumChoiceToTupleMixin, Enum):
-    MARRIED   = 'Married'
-    SINGLE    = 'Single'
-    SEPARATED = 'Separated'
-    DIVORCED  = 'Divorced'
-    WIDOWED   = 'Widowed'
-    WIDOWER   = 'Widower'
+    MARRIED   = 'married'
+    SINGLE    = 'single'
+    SEPARATED = 'separated'
+    DIVORCED  = 'divorced'
+    WIDOWED   = 'widowed'
+    WIDOWER   = 'widower'
 
 
 class Religion(EnumChoiceToTupleMixin, Enum):
@@ -41,4 +41,13 @@ class Level(EnumChoiceToTupleMixin, Enum):
 
 class StringBoolChoices(EnumChoiceToTupleMixin, Enum):
     YES = "yes"
-    NO = "no"
+    NO  = "no"
+
+class Honorifics(EnumChoiceToTupleMixin, Enum):
+    MR      = "Mr"
+    MRS     = "Mrs"
+    MISS    = "Miss"
+    MS      = "Ms"
+    DR      = "Dr"
+
+

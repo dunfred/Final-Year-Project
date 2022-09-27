@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock custom_styles %}
+
+
+{% block main_body %}
+
+<body>
+    <div class="wrapper">
+        {{ error }}
+       <div class="container">
+                 <div class="sub-header">Login</div>
+                
+                 <form method="POST" action="{% url 'counsellor:login_client' %}">
+                    {% csrf_token %}
+                     <div class="layout">
+                         <input type="email" placeholder="Student Email"/>
+                     </div>
+
+                     <div class="layout">
+                         <input type="password" placeholder="Password"/>
+                     </div>
+                     
+                     <div class="forgot-password"><a href="forget.html">Forgot password?</a></div>
+             
+                     <button  class="submit-form">Login</button>
+                    
+                     <div class="redirect">
+                         <div>Don't have an account?<a href="{% url 'counsellor:register_client' %}">Sign up</a></div>
+                     </div>
+             </form>
+         </div>
+     </div>
+ </body>
+{% endblock main_body %}

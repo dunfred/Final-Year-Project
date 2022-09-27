@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 # Register your models here.
 admin.site.register(Consent)
+admin.site.register(CounsellingType)
 
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
@@ -14,7 +15,6 @@ class UserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User
     list_display = [
-        "username",
         "email",
         "first_name",
         "last_name",
@@ -29,9 +29,9 @@ class UserAdmin(BaseUserAdmin):
         "phone",
     ]
 
-    list_display_links = ['username', 'email', 'first_name', 'last_name']
+    list_display_links = ['email', 'first_name', 'last_name']
     
-    search_fields = ['username', 'first_name', 'last_name', 'email', 'phone']
+    search_fields = ['first_name', 'last_name', 'email', 'phone']
 
     ordering = ['-created_at']
     list_filter = []
@@ -39,7 +39,6 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': (
-            'username',
             'first_name',
             'last_name',
             'other_names',
@@ -56,7 +55,7 @@ class UserAdmin(BaseUserAdmin):
         )}),
         (None, {'fields': (
             'user_type',
-
+            'avatar',
         )}),
     )
 
@@ -66,7 +65,6 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': (
-                'username',
                 'email',
                 'first_name',
                 'last_name',
@@ -90,26 +88,26 @@ class CounsellorAdmin(UserAdmin):
         "is_superuser",
         "sex",
         "phone",
-        "available",
     ]
 
     list_display_links = ['email', 'first_name', 'last_name']
     
     search_fields = ['first_name', 'last_name', 'email', 'phone']
-
+    filter_horizontal = ['fields','availability']
     ordering = ['-created_at']
     list_filter = []
     
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': (
-            'username',
+            'title',
             'first_name',
             'last_name',
             'other_names',
             'phone',
             'address',
             'sex',
+            'description',
         )}),
         ('Permissions', {'fields': (
             'is_active',
@@ -118,7 +116,9 @@ class CounsellorAdmin(UserAdmin):
         )}),
         (None, {'fields': (
             'available',
-
+            'profile',
+            'fields',
+            'availability',
         )}),
     )
 
@@ -138,6 +138,18 @@ class CounsellorAdmin(UserAdmin):
         ),
     )
 
+@admin.register(AvailableDay)
+class AvailableDayAdmin(admin.ModelAdmin):
+    list_display = ['day']
+    
+    def has_change_permission(self, request, obj=None):
+        return True
+
+    def has_delete_permission(self, request, obj=None):
+        return True
+
+    def has_add_permission(self, request, obj=None):
+        return True
 
 
 admin.site.register(User, UserAdmin)
