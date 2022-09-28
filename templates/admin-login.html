@@ -13,12 +13,13 @@
                     <div class="sub-header">Counsellor Login</div>
 
                     <form method="POST" action="{% url 'counsellor:login_counsellor' %}">
+                        {% csrf_token %}
                         <div class="layout">
-                            <input type="email" placeholder="Email"/>
+                            <input name="email" type="email" placeholder="Email"/>
                         </div>
 
                         <div class="layout">
-                            <input type="password" placeholder="Password"/>
+                            <input name="password" type="password" placeholder="Password"/>
                         </div>
                         
                         <div class="forgot-password"><a href="{% url 'counsellor:forgot_password' %}">Forgot password?</a></div>
@@ -33,13 +34,9 @@
         </div>
 
 
-        <!-- Error message pop up. The styling can be found in the global CSS -->
-        <div class="error-card-container">
-            <div class="error-card">
-                <img src="../static/favicon/error.svg" alt="upload Icon">             
-                <div class="error-card-message">This is an error message</div>
-            </div>
-        </div>
+        {% if error %}
+            {% include 'includes/alert.html' %}
+        {% endif %}
     </body>
 {% endblock main_body %}
 
