@@ -79,11 +79,12 @@ def login_client(request):
     if request.method == 'POST':
         email    = request.POST.get('email')
         password = request.POST.get('password')
-
+        
         try:
             user = User.objects.get(email__iexact=email)
             password_correct = User.check_password(user, password)
         except(TypeError, ValueError, OverflowError, User.DoesNotExist) as e:
+            print(e)
             user = None
             password_correct = False
 
