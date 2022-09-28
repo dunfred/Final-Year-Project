@@ -14,11 +14,8 @@
             <li><a href="{% url 'counsellor:about' %}">About</a></li>
             <li><a href="{% url 'counsellor:confidential' %}">Terms & Conditions</a></li>
             <li><a href="{% url 'counsellor:support' %}">Support</a></li>
-            {% if request.user.is_authenticated %}
-                <li><a href="{% url 'counsellor:logout' %}">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>             
-            {% endif %}
+            <li><a href="{% url 'counsellor:logout' %}">Login</a></li>
+            
         </ul>
     </nav> 
     
@@ -26,9 +23,9 @@
             <section class="intro">
                 <div class="intro-wrap">
                     <div class="intro-title">
-                        Experience Counselling Services from the University of Capecoast
+                        Experience Counselling Services from the University of Cape Coast
                     </div>
-                    <a  href="{% url 'counsellor:register' %}">
+                    <a  href="{% url 'counsellor:register_client' %}">
                         <button class="register">Register</button>
                     </a>
                 </div>

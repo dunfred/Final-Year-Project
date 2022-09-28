@@ -6,38 +6,41 @@
 {% endblock custom_styles %}
 
 {% block main_body %}
-	
 <body>
     <div class="wrapper"> 
         <div class="container">
                 <div class="sub-header">Sign Up</div>
 
-                <form method="POST" action="{% url 'counsellor:register' %}">
+                <form method="POST" action="{% url 'counsellor:register_client' %}">
                     {% csrf_token %}
                     <div class="layout">
-                        <input type="text" placeholder="First Name"/>
+                        <input required name="first_name"type="text" placeholder="First Name"/>
                     </div>
 
                     <div class="layout">
-                        <input type="text" placeholder="Last Name"/>
+                        <input required name="last_name" type="text" placeholder="Last Name"/>
                     </div>
                     
                     <div class="layout">
-                        <input type="email" placeholder="Student Email"/>
+                        <input required name="email" type="email" placeholder="Student Email"/>
+                    </div>
+                    
+                    <div class="layout">
+                        <input required name="username" type="text" placeholder="Username"/>
                     </div>
 
                     <div class="layout">
-                        <input type="password" placeholder="Password"/>
+                        <input required name="phone" type="phone" placeholder="Cell Phone"/>
                     </div>
-                    
-                    <a href="{% url 'counsellor:confidential' %}">
-                        <div class="submit-form">Sign Up</div>
-                    </a>
+
+                    <div class="layout">
+                        <input required name="pssword" type="password" placeholder="Password"/>
+                    </div>
+
+                    <button class="submit-form">Sign Up</button>
                     
                     <div class="redirect">
-                        <div>
-                            Already have an account?<a href="{% url 'counsellor:login' %}">Login</a>
-                        </div>
+                        <div> Already have an account?<a href="{% url 'counsellor:login_client' %}">Login</a></div>
                     </div>
             </form>
         </div>

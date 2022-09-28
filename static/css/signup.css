@@ -1,7 +1,7 @@
 /*Responsive mobile first view*/
 body{
     height: 100vh;
-    color: var(--sage-bg-black);
+    /* color: var(--sage-bg-black); */
 }
 
 .wrapper{

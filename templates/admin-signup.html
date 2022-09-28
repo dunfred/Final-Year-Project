@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/admin-signup.css' %}">
+{% endblock custom_styles %}
+
+
+{% block main_body %}
+    <body>
+       <div class="admin-wrapper"> 
+            <div class="admin-container">
+                    <div class="sub-header">Counsellor Sign Up</div>
+
+                    <form method="POST" action="{% url 'counsellor:register_counsellor' %}"> 
+                        <div class="admin-form-section">
+                            <div class="admin-image">
+                                <img src="{% static 'favicon/upload-image.svg' %}" alt="upload Icon">
+                            </div>
+                            <div class="admin-form-title">Upload Profile Image</div>
+                            <form action="" class="upload-image">
+                                <input type="file" id="myFile" name="filename">
+                            </form>
+                        </div>
+
+                        <div class="admin-form-section">
+                            <div class="admin-form-title">Personal Details</div>
+                            <div class="layout">
+                                <input type="text" placeholder="First Name"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Last Name"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Other Names"/>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-form-section">
+                            <div class="admin-form-title">Security Details</div>
+                            <div class="layout">
+                                <input type="email" placeholder="Counsellor Email"/>
+                            </div>
+                            <div class="layout">
+                                <input type="number" placeholder="Mobile Number"/>
+                            </div>
+                            <div class="layout">
+                                <input type="password" placeholder="Password"/>
+                            </div>
+                        </div>
+                        
+                        <button class="submit-form">Register</button>
+                        
+                        <div class="redirect">
+                            <div>
+                                Already have an account?<a href="{% url 'counsellor:login_counsellor' %}">Login</a>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </body>
+{% endblock main_body %}
