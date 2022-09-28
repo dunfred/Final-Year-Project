@@ -1,12 +1,11 @@
 /*Responsive mobile first view*/
-.wrapper{
-    min-height: 100vh;
+.confidential-wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container{
+.confidential-container{
     padding: 40px;
     border-radius: 0px;
     width: 100%;
@@ -16,6 +15,38 @@
     font-weight: 600;
     font-size: 24px;
     margin: 20px 0px;
+}
+
+.confidential-form-section{
+    margin: 32px 0px;
+}
+
+.confidential-form-title{
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.confidential-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: var(--sage-bg-gray);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.confidential-image img{
+    width: 50px;
+    height: 50px;
+}
+
+.upload-image{
+    width: 100%;
+    background-color: var(--sage-bg-gray);
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .layout{
@@ -37,11 +68,91 @@
     transition: all .5s;
 }
 
+.layout-sub{
+    color: #707070;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.register{
+    background-color: var(--primary-color);
+    width: 100%;
+    margin-top: 32px;
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px 2px rgba(0,0,0,0.10); 
+    text-align: center;
+    font-size: 14px;
+}
+
+.redirect{
+    margin: 30px 0px;
+} 
+
+.redirect div{
+    font-size: 14px;
+    text-align: center;
+}
+
+.redirect div a{
+    margin-left: 10px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+
+/* Radio button global styling */
+.confidential-form-section .radio-button{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
+.confidential-form-section label{
+    font-size: 16px;
+    margin-left: 12px;
+    color: #707070;
+    cursor: pointer;
+}
+
+.form-radio{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+
+.category-form-wrap{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.category-form{
+    background-color: var(--sage-bg-gray);
+    width: 100%;
+    padding: 14px;
+    padding-left: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.category-extra{
+    margin-bottom: 16px;
+}
 
 
 
+/* This styling is responsible for displaying the worker form and Student form */
+.student-form-container{
+    /* display: none; */
+}
 
-
+.worker-form-container{
+    display: none;
+}
 
 
 
@@ -50,9 +161,16 @@
 
  
 
+
+
+
 /*Responsive Desktop view*/
 @media only screen and (min-width: 768px){
     .wrapper{
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
 
@@ -77,6 +195,10 @@
         width: 90%;
     }
 
+    form{
+        position: relative;
+    }
+
     .layout{
         width: 100%;
         margin-bottom: 25px;
@@ -88,6 +210,8 @@
     
     
     
+
+
     
     
     
@@ -106,4 +230,4 @@
         right: 0;
     }
 }
-   
+    

@@ -24,10 +24,6 @@
                     <div class="layout">
                         <input required name="email" type="email" placeholder="Student Email"/>
                     </div>
-                    
-                    <div class="layout">
-                        <input required name="username" type="text" placeholder="Username"/>
-                    </div>
 
                     <div class="layout">
                         <input required name="phone" type="phone" placeholder="Cell Phone"/>
@@ -43,6 +39,15 @@
                         <div> Already have an account?<a href="{% url 'counsellor:login_client' %}">Login</a></div>
                     </div>
             </form>
+        </div>
+    </div>
+
+    
+    <!-- Error message pop up. The styling can be found in the global CSS -->
+    <div class="error-card-container">
+        <div class="error-card">
+            <img src="../static/favicon/error.svg" alt="upload Icon">             
+            <div class="error-card-message">This is an error message</div>
         </div>
     </div>
 </body>
