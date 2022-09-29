@@ -6,7 +6,63 @@
 
 .landing-page-logo{
     height: 100%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    position: fixed;
+    background-color: #FFFFFF;
+    top: 0;
+    z-index: 99;
+    box-shadow: var(--nav-shadow);
+}
+
+.menu { 
+    list-style: none;
+    float: right;
+    position: relative;
+}
+
+.menu li{
+    display: inline-block;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--sage-bg-black);
+    font-size: 16px;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0px 10px;
 } 
+
+.menu li a:last-child{
+    margin-right: 32px;
+}
+
+.menu li a:hover{
+    background-color: var(--primary-color-50);
+    border-radius: 8px;
+    transition: all .7s;
+}
+
+.menu li a:active{
+    background-color: var(--primary-color-50);
+}
+
+label {
+    font-size: 30px;
+    width: 25px;
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
 
 .intro{
     display: flex;
@@ -246,7 +302,7 @@ a button{
     .intro{
         height: 100vh;
     }
-
+    
     .intro-wrap{
         padding-left: 84px;
     }
@@ -451,7 +507,55 @@ a button{
 
 /*Responsive Mobile Navbar view*/
 @media only screen and (max-width: 768px) {
+    label {
+        display: block;
+        cursor: pointer;
+        transition: all .3s;
+    }
+
+    .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        top: 80px;
+        right: -100%;
+        text-align: center;
+        z-index: 99;
+        background-color: #ffffff;
+        transition: all .5s;
+    }
+
+    .menu li{
+        display: block;
+        margin: 0;
+    }
     
+    .menu li:last-child{
+        margin-right: 0; 
+    }
+
+    .menu li::after{
+        content: " ";
+        border: none;
+    }
+    
+    .menu li a {
+        display: block;
+        margin: 0;
+        font-size: 21px;
+        font-weight: 600;
+        padding: 20px 0px;
+    }
+
+    #toggle:checked ~ .menu {
+        display: block;
+        right: 0;
+        transition: all .6s;
+    }
+    
+    footer .footer-links li a{
+        font-size: 0.8rem;
+    }
 }
 
 
