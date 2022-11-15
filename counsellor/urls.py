@@ -9,11 +9,15 @@ urlpatterns = [
     # For clients
     path('login/',           views.login_client, name="login_client"),
     path('register/',        views.register_client, name="register_client"),
+    path('bookings/',        views.client_bookings, name="client_bookings"),
     
     # For admins
+    path('counsellor-admin/',  views.home_admin, name="home_counsellor"),
     path('counsellor-admin/login/',     views.login_counsellor, name="login_counsellor"),
     path('counsellor-admin/register/',  views.register_counsellor, name="register_counsellor"),
     path('counsellor-admin/profile/<int:counsellor_id>/',  views.counsellor_profile, name="counsellor_profile"),
+    path('counsellor-admin/client-approval/',  views.client_approval_admin, name="client_approval"),
+
     
     path('logout/',          views.logout_view, name="logout"),
     path('about/',           views.about, name="about"),
