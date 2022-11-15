@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/admin-homepage.css' %}">
+{% endblock custom_styles %}
+
+{% block main_body %}
+<body>
+    <div class="homepage-nav">
+        <div class="page-nav">
+            <a href="{% url 'counsellor:index' %}" class="page-logo"><img src="{% static 'favicon/logo.svg' %}" alt="logo"/></a>
+            <div class="user-profile">Profile</div> 
+        </div>
+        <div class="switch-nav">
+            <div class="booking-nav">Bookings</div>
+            <div class="complete-nav">Completed</div>
+        </div>
+    </div>
+    <div class="bookings">
+        <div class="book">
+            <div class="booking-icon">
+                <img src="/static/favicon/calendar.svg" />
+            </div>
+            <div class="book-client">
+                <div class="book-title">Kakashi Senpai</div>
+                <div class="book-subtitle">Student</div>
+            </div>
+            <div class="book-info">
+                <div class="book-status status-pending">Pending</div>
+                <div class="book-time">10:30 pm</div>
+            </div>
+        </div>
+        <div class="book">
+            <div class="booking-icon">
+                <img src="/static/favicon/calendar.svg" />
+            </div>
+            <div class="book-client">
+                <div class="book-title">Kakashi Senpai</div>
+                <div class="book-subtitle">Student</div>
+            </div>
+            <div class="book-info">
+                <div class="book-status status-new">New</div>
+                <div class="book-time">10:30 pm</div>
+            </div>
+        </div>
+        <div class="book">
+            <div class="booking-icon">
+                <img src="/static/favicon/calendar.svg" />
+            </div>
+            <div class="book-client">
+                <div class="book-title">Kakashi Senpai</div>
+                <div class="book-subtitle">Student</div>
+            </div>
+            <div class="book-info">
+                <div class="book-status status-completed">Completed</div>
+                <div class="book-time">10:30 pm</div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock main_body %}
+
+    
