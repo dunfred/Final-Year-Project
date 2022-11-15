@@ -44,7 +44,7 @@
                             <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
                         </a>
                     </form> 
-                    <button class="book-cta">Book Appointment</button>
+                    <button id="book-cta" class="book-cta">Book Appointment</button>
                 </div> 
             </div>
 
@@ -70,12 +70,12 @@
 
 
         <!-- Modal for booking appointment -->
-        <div class="book-modal-container" hidden>
+        <div id="book-appointment-modal" class="book-modal-container" style="display:none;">
             <div class="book-modal">
                 <div class="book-modal-wrap">
                     <div class="book-modal-title">
                         <div class="book-modal-title-h1">Book Appointment</div>
-                        <img src="{% static 'favicon/cancel.svg' %}" alt="Cancel Icon">
+                        <img id="close-modal" src="{% static 'favicon/cancel.svg' %}" alt="Cancel Icon">
                     </div>
                     <div class="book-modal-types">
                         <div class="book-modal-type">
@@ -106,5 +106,7 @@
     </body>
 {% endblock main_body %}
 
-{% block custom_html %}
-{% endblock custom_html %}
+
+{% block custom_js %}
+<script src="{% static 'js/book-appointment.js' %}"></script>
+{% endblock custom_js %}

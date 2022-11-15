@@ -71,7 +71,6 @@ def counsellor_profile(request, counsellor_id):
     return render(request, template, context)
 
 
-
 def login_client(request):
     template = "login.html"
     context = {}
