@@ -1,0 +1,126 @@
+.homepage-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0; 
+    z-index: 99;
+    background-color: #ffffff;
+    box-shadow: var(--sage-shadow);
+    padding: 20px; 
+}
+
+.page-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-logo{
+    height: 100%;
+}
+
+.page-logo img{ 
+    height: 40px;
+    width: 40px;
+}
+
+.switch-nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #EEF0F2;
+    padding: 8px;
+    border-radius: 12px;
+    margin-top: 32px;
+    gap: 16px;
+}
+
+.booking-nav{
+    color: #ffffff;
+    text-align: center;
+    background-color: var(--primary-color);
+    padding: 16px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.complete-nav{
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.complete-nav:hover{
+    color: #ffffff;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.bookings{
+    position: relative;
+    top: 200px;
+    margin: 16px;
+}
+
+.book{
+    display: flex;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: var(--sage-shadow);
+}
+
+.booking-icon{
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--primary-color-50);
+}
+
+.booking-icon img{
+    height: 40px;
+    width: 40px;
+}
+
+.book-client{
+    margin-left: 16px;
+    width: 100%;
+}
+
+.book-title{
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.book-subtitle{
+    font-size: 14px;
+    color: #707070;
+}
+
+.book-info{
+    display: block;
+    min-width: 16%;
+    text-align: right;
+}
+
+.book-status{
+    font-size: 14px;
+    margin-bottom: 42px;
+}
+
+.status-pending{
+    color: #F59E37;
+}
+
+.status-new{
+    color: #F53737;
+}
+
+.status-completed{
+    color: #23D235;
+}
+
+.book-time{
+    font-size: 10px;
+    color: #707070;
+}

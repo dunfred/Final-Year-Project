@@ -44,6 +44,29 @@ def home(request):
 
     return render(request, template, context)
 
+
+
+@login_required(login_url='counsellor:login_counsellor')
+def home_admin(request):
+    template = "admin-homepage.html"
+    context = {}
+    return render(request, template, context)
+
+
+@login_required(login_url='counsellor:login_counsellor')
+def client_approval_admin(request):
+    template = "admin-client-approval.html"
+    context = {}
+    return render(request, template, context)
+
+
+@login_required(login_url='counsellor:login_client')
+def client_bookings(request):
+    template = "client-bookings.html"
+    context = {}
+    return render(request, template, context)
+
+
 @login_required(login_url='counsellor:login_counsellor')
 def counsellor_profile(request, counsellor_id):
     template = "counsellor-profile.html"
@@ -110,8 +133,8 @@ def login_client(request):
                 context['error'] = 'Wrong Email / Password combination.'
         else:
             context['error'] = 'No matching account found.'
-
     return render(request, template, context)
+
 
 def login_counsellor(request):
     template = "admin-login.html"
@@ -147,7 +170,7 @@ def login_counsellor(request):
                     return redirect(nextPage)
             except Exception as e:
                 print(e)
-                return redirect('counsellor:home')
+                return redirect('counsellor:home_admin')
         else:
             print('No such account exists')
             return redirect('.')
