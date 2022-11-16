@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from counsellor.models import CounsellingType, Counsellor, User
+from counsellor.models import CounsellingType, Counsellor, User, Booking
 
 # Create your views here.
 
@@ -49,14 +49,31 @@ def home(request):
 @login_required(login_url='counsellor:login_counsellor')
 def home_admin(request):
     template = "admin-homepage.html"
-    context = {}
+    bookings = Booking.objects.filter(counsellor=request.user)
+
+    context = {
+        'bookings': bookings
+    }
+
     return render(request, template, context)
 
 
 @login_required(login_url='counsellor:login_counsellor')
-def client_approval_admin(request):
+def client_approval_admin(request, client_id):
+    client = User.objects.filter(id=client_id).first()
+    context = {
+        'client': client
+    }
+
+    booking_id = request.GET.get("booking_id", None)
+    if booking_id:
+        booking = Booking.objects.filter(id=booking_id).first()
+        
+        if booking:
+            context['booking'] = booking
+
     template = "admin-client-approval.html"
-    context = {}
+
     return render(request, template, context)
 
 
@@ -170,7 +187,7 @@ def login_counsellor(request):
                     return redirect(nextPage)
             except Exception as e:
                 print(e)
-                return redirect('counsellor:home_admin')
+                return redirect('counsellor:home_counsellor')
         else:
             print('No such account exists')
             return redirect('.')

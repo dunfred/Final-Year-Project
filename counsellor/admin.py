@@ -1,7 +1,10 @@
+from datetime import datetime
 from django.contrib import admin
 from counsellor.forms import CounsellorAdminCreationForm, UserAdminCreationForm
+from django.contrib import messages
 from counsellor.models import *
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.shortcuts import redirect
 
 # Register your models here.
 admin.site.register(Consent)
@@ -138,6 +141,41 @@ class CounsellorAdmin(UserAdmin):
         ),
     )
 
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = [
+        "client",
+        "counsellor",
+        "status",
+        "created_at"
+    ]
+
+    list_display_links = ['client', 'counsellor', 'status']
+    
+    search_fields = ['client', 'counsellor', 'status']
+    ordering = ['-created_at']
+    list_filter = ["status"]
+
+    def save_model(self, request, obj, form, change):
+        start_time   = datetime.combine(obj.start_date, obj.start_time).replace(hour=0,minute=0, second=0, microsecond=0)
+        current_time = datetime.now().replace(hour=0,minute=0, second=0, microsecond=0)
+
+        if start_time < current_time:
+            messages.error(request, "Starting date cannot be any day before current")
+            return redirect('.')
+            
+        elif obj.start_time < obj.end_time:
+            messages.error(request, "Starting time cannot be less than ending time.")
+            return redirect('.')
+
+        elif obj.start_time == obj.end_time:
+            messages.error(request, "Starting time cannot be same as ending time.")
+            return redirect('.')
+
+        else:
+            return super(BookingAdmin, self).save_model(request, obj, form, change)
+    
+    
 @admin.register(AvailableDay)
 class AvailableDayAdmin(admin.ModelAdmin):
     list_display = ['day']

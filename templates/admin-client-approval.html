@@ -11,21 +11,20 @@
     <body>
         <div class="approval-profile-container">
             <div class="approval-profile-nav">
-                <div class="approval-name">
-                    {{ counsellor.title|title}}. {{ counsellor.get_full_name|title}}
-                </div>
                 <div class="approval-card">
                     <div class="approval-detail">
-                        <div class="approval-category">{{ categories_str}} Student</div>
-                        <div class="approval-title">Male</div>
+                        <div class="approval-category"> Student</div>
+                        <div class="approval-title"> 
+                            {{client.sex}}
+                        </div>
                     </div>
 
                     <div class="approval-profile-cta">
                         <form submit="index.html" class="approval-cta-icons">
-                            <a class="approval-cta-icon" href="tel:{{counsellor.phone}}">
+                            <a class="approval-cta-icon" href="tel:{{client.phone}}">
                                 <img src="{% static 'favicon/call.svg' %}" alt=" call"/>
                             </a>
-                            <a class="approval-cta-icon" href="mailto:{{counsellor.email}}">
+                            <a class="approval-cta-icon" href="mailto:{{client.email}}">
                                 <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
                             </a>
                         </form>
@@ -39,21 +38,27 @@
             <div class="client-details">
                 <div class="client-detail">
                     <div class="detail-title">Booking Type</div>
-                    <div class="detail-subtitle">Online Video Call</div>
+                    <div class="detail-subtitle">
+                        {% if booking.booking_type == "MEET_IN_PERSON" %}
+                            MEET IN PERSON
+                        {% else %}
+                            VIRTUAL MEETING
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="client-detail">
                     <div class="detail-title">Date</div>
-                    <div class="detail-subtitle">10/11/2022</div>
+                    <div class="detail-subtitle"> {{ booking.start_date|date:"d/m/Y"}}</div>
                 </div>
                 <div class="client-detail">
                     <div class="detail-title">Time</div>
-                    <div class="detail-subtitle">10:20 am - 12:00 pm</div>
+                    <div class="detail-subtitle"> {{ booking.start_time|date:"g:i A"}} - {{ booking.end_time|date:"g:i A"}} </div>
                 </div>
                 <div class="client-detail">
                     <div class="detail-title">Consent Form</div>
                     <div class="detail-subtitle-consent">
                         <a href="#">Click for Counsellee Consent Form</a>
-                        <img src="/static/favicon/arrow-left.svg">
+                        <img src="{% static 'favicon/arrow-left.svg' %}">
                     </div>
                 </div>
                 <form class="approval-cta">
