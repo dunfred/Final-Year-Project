@@ -15,50 +15,36 @@
         </div>
         <div class="switch-nav">
             <div class="booking-nav">Bookings</div>
-            <div class="complete-nav">Completed</div>
+            {% comment %} <div class="complete-nav">Completed</div> {% endcomment %}
         </div>
     </div>
     <div class="bookings">
-        <div class="book">
-            <div class="booking-icon">
-                <img src="/static/favicon/calendar.svg" />
-            </div>
-            <div class="book-client">
-                <div class="book-title">Kakashi Senpai</div>
-                <div class="book-subtitle">Student</div>
-            </div>
-            <div class="book-info">
-                <div class="book-status status-pending">Pending</div>
-                <div class="book-time">10:30 pm</div>
-            </div>
-        </div>
-        <div class="book">
-            <div class="booking-icon">
-                <img src="/static/favicon/calendar.svg" />
-            </div>
-            <div class="book-client">
-                <div class="book-title">Kakashi Senpai</div>
-                <div class="book-subtitle">Student</div>
-            </div>
-            <div class="book-info">
-                <div class="book-status status-new">New</div>
-                <div class="book-time">10:30 pm</div>
-            </div>
-        </div>
-        <div class="book">
-            <div class="booking-icon">
-                <img src="/static/favicon/calendar.svg" />
-            </div>
-            <div class="book-client">
-                <div class="book-title">Kakashi Senpai</div>
-                <div class="book-subtitle">Student</div>
-            </div>
-            <div class="book-info">
-                <div class="book-status status-completed">Completed</div>
-                <div class="book-time">10:30 pm</div>
-            </div>
-        </div>
-    </div>
+        {% for booking in bookings %}
+            <a href="{% url 'counsellor:client_approval' client_id=booking.client.id %}?booking_id={{booking.id}}">
+                <div class="book">
+                    <div class="booking-icon">
+                        <img src="{% static 'favicon/calendar.svg' %}" />
+                    </div>
+                    <div class="book-client">
+                        <div class="book-title">{{ booking.client.get_full_name|title }}</div>
+                        <div class="book-subtitle">Student</div>
+                    </div>
+                    <div class="book-info">
+                        <div class="book-status 
+                            {% if booking.status == "Pending" %}
+                                status-pending
+                            {% elif booking.status == "New" %}
+                                status-new
+                            {% else %}
+                                status-completed
+                            {% endif %}
+                        ">{{ booking.status }}</div>
+                        <div class="book-time">{{ booking.created_at|date:"g:i A"}}</div> 
+                        {% comment %} date:"d/m/Y H:i A" {% endcomment %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
 </body>
 {% endblock main_body %}
 

@@ -16,7 +16,7 @@ urlpatterns = [
     path('counsellor-admin/login/',     views.login_counsellor, name="login_counsellor"),
     path('counsellor-admin/register/',  views.register_counsellor, name="register_counsellor"),
     path('counsellor-admin/profile/<int:counsellor_id>/',  views.counsellor_profile, name="counsellor_profile"),
-    path('counsellor-admin/client-approval/',  views.client_approval_admin, name="client_approval"),
+    path('counsellor-admin/client-approval/<int:client_id>/',  views.client_approval_admin, name="client_approval"),
 
     
     path('logout/',          views.logout_view, name="logout"),
