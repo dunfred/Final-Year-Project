@@ -92,7 +92,7 @@ class Counsellor(User):
 
 
 class AvailableDay(TimeStampMixin, models.Model):
-    day           = models.CharField(_("Type"), max_length=4, unique=True)
+    day           = models.CharField(_("Type"), max_length=15, unique=True)
 
     class Meta:
         verbose_name = _('available day')
