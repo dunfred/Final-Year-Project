@@ -11,6 +11,37 @@
     <link rel="icon" href="{% static 'favicon/logo.svg' %}" type="image/x-icon">
     <link rel="shortcut icon" href="{% static 'favicon/logo.svg' %}" type="image/x-icon">
 
+    <meta name="title" {% block meta_title %} content="iCounsel Dashoard" {% endblock meta_title %}>
+    <meta name="description" {% block meta_descrp %}
+        content="xperience Counselling Services from the University of Cape Coast"
+    {% endblock meta_descrp %}>
+
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" {% block og_meta_type %}
+        content="article"
+    {% endblock og_meta_type %}>
+
+    <meta property="og:url" {% block og_meta_url %} content="https://icounsel.herokuapp.com" {% endblock og_meta_url %}>
+    <meta property="og:title" {% block og_meta_title %} content="iCounsel Dashoard" {% endblock og_meta_title %}>
+    <meta property="og:description" {% block og_meta_descrp %}
+        content="Experience Counselling Services from the University of Cape Coast"
+    {% endblock og_meta_descrp %}>
+    <meta property="og:image" {% block og_meta_image %}
+        content="{% static 'images/lady.jpg' %}"
+    {% endblock og_meta_image %}>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" {% block twt_meta_url %} content="https://icounsel.herokuapp.com" {% endblock twt_meta_url %}>
+    <meta property="twitter:title" {% block twt_meta_title %} content="iCounsel Dashoard" {% endblock twt_meta_title %}>
+    <meta property="twitter:description" {% block twt_meta_descrp %}
+        content="Experience Counselling Services from the University of Cape Coast"
+    {% endblock twt_meta_descrp %}>
+    <meta property="twitter:image" {% block twt_meta_image %}
+        content="{% static 'images/lady.jpg' %}"
+    {% endblock twt_meta_image %}>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     {% block custom_styles %}
