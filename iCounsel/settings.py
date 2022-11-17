@@ -29,11 +29,13 @@ load_dotenv()  # take environment variables from .env.
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = eval(os.getenv('DEBUG'))
+DEBUG = eval(os.getenv('DEBUG', 'False'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 ROOT_DOMAIN = os.getenv('ROOT_DOMAIN')
+
+LOCAL = eval(os.getenv('LOCAL', 'False'))
 
 # Application definition
 
@@ -87,13 +89,20 @@ WSGI_APPLICATION = 'iCounsel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if LOCAL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'icounsel_db',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

@@ -1,1 +1,1 @@
-web: gunicorn iCounsel.wsgi --log-file -
+web: gunicorn iCounsel.wsgi

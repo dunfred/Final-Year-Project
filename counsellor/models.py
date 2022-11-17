@@ -58,7 +58,7 @@ class Counsellor(User):
     religion        = None
     marital_status  = None
     show_name       = None
-    title           = models.CharField(_("Title"), default=Honorifics.MR, choices=Honorifics.choices(), max_length=5)
+    title           = models.CharField(_("Title"), default=Honorifics.MR, choices=Honorifics.choices(), max_length=15)
     profile         = models.ImageField(_('Profile Image'), upload_to="profiles/counselors/", default=None, blank=True, null=True)
     available       = models.BooleanField(_('Available'), default=False)
     fields          = models.ManyToManyField('counsellor.CounsellingType', related_name="counsellors", blank=True)
@@ -92,7 +92,7 @@ class Counsellor(User):
 
 
 class AvailableDay(TimeStampMixin, models.Model):
-    day           = models.CharField(_("Type"), max_length=4, unique=True)
+    day           = models.CharField(_("Type"), max_length=15, unique=True)
 
     class Meta:
         verbose_name = _('available day')
