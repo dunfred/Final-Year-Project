@@ -16,4 +16,5 @@ django-autocomplete-light
 shortuuid==1.0.8
 python-dotenv==0.20.0
 dj_database_url
-django-on-heroku  
+django-on-heroku
+gunicorn
