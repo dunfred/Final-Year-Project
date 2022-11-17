@@ -1,1 +1,1 @@
-web: iCounsel myproject.wsgi
+web: gunicorn iCounsel myproject.wsgi
