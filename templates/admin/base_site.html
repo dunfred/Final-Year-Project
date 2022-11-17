@@ -3,21 +3,21 @@
 
 {% block branding %}
  <h2 id="head">
-    <a href="http://127.0.0.1:8000" target="_blank"> <img src="{% static 'favicon/logo.svg' %}" width="120px" height="25px"/></a>
+    <a href="https://icounsel.herokuapp.com" target="_blank"> <img src="{% static 'images/lady.jpg' %}" width="120px" height="25px"/></a>
  </h2>
  {% endblock branding %}
 
 
 {% block extrastyle %}
-    <link rel="icon" href="{% static 'favicon/logo.svg' %}" type="image/x-icon">
-    <link rel="shortcut icon" href="{% static 'favicon/logo.svg' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/lady.jpg' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/lady.jpg' %}" type="image/x-icon">
 
 
     <!-- Primary Meta Tags -->
     <title>iCounsel Dashoard</title>
     <meta name="title" {% block meta_title %} content="iCounsel Dashoard" {% endblock meta_title %}>
     <meta name="description" {% block meta_descrp %}
-        content="The best platform for creating polls and casting votes online"
+        content="xperience Counselling Services from the University of Cape Coast"
     {% endblock meta_descrp %}>
 
     <!-- Open Graph / Facebook -->
@@ -25,24 +25,24 @@
         content="article"
     {% endblock og_meta_type %}>
 
-    <meta property="og:url" {% block og_meta_url %} content="http://127.0.0.1:8000" {% endblock og_meta_url %}>
+    <meta property="og:url" {% block og_meta_url %} content="https://icounsel.herokuapp.com" {% endblock og_meta_url %}>
     <meta property="og:title" {% block og_meta_title %} content="iCounsel Dashoard" {% endblock og_meta_title %}>
     <meta property="og:description" {% block og_meta_descrp %}
         content="Experience Counselling Services from the University of Cape Coast"
     {% endblock og_meta_descrp %}>
     <meta property="og:image" {% block og_meta_image %}
-        content="{% static 'favicon/logo.svg' %}"
+        content="{% static 'images/lady.jpg' %}"
     {% endblock og_meta_image %}>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" {% block twt_meta_url %} content="http://127.0.0.1:8000" {% endblock twt_meta_url %}>
+    <meta property="twitter:url" {% block twt_meta_url %} content="https://icounsel.herokuapp.com" {% endblock twt_meta_url %}>
     <meta property="twitter:title" {% block twt_meta_title %} content="iCounsel Dashoard" {% endblock twt_meta_title %}>
     <meta property="twitter:description" {% block twt_meta_descrp %}
         content="Experience Counselling Services from the University of Cape Coast"
     {% endblock twt_meta_descrp %}>
     <meta property="twitter:image" {% block twt_meta_image %}
-        content="{% static 'favicon/logo.svg' %}"
+        content="{% static 'images/lady.jpg' %}"
     {% endblock twt_meta_image %}>
 
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
