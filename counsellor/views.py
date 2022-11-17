@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from counsellor.models import CounsellingType, Counsellor, User
+from counsellor.models import CounsellingType, Counsellor, User, Booking
 
 # Create your views here.
 
@@ -44,6 +44,46 @@ def home(request):
 
     return render(request, template, context)
 
+
+
+@login_required(login_url='counsellor:login_counsellor')
+def home_admin(request):
+    template = "admin-homepage.html"
+    bookings = Booking.objects.filter(counsellor=request.user)
+
+    context = {
+        'bookings': bookings
+    }
+
+    return render(request, template, context)
+
+
+@login_required(login_url='counsellor:login_counsellor')
+def client_approval_admin(request, client_id):
+    client = User.objects.filter(id=client_id).first()
+    context = {
+        'client': client
+    }
+
+    booking_id = request.GET.get("booking_id", None)
+    if booking_id:
+        booking = Booking.objects.filter(id=booking_id).first()
+        
+        if booking:
+            context['booking'] = booking
+
+    template = "admin-client-approval.html"
+
+    return render(request, template, context)
+
+
+@login_required(login_url='counsellor:login_client')
+def client_bookings(request):
+    template = "client-bookings.html"
+    context = {}
+    return render(request, template, context)
+
+
 @login_required(login_url='counsellor:login_counsellor')
 def counsellor_profile(request, counsellor_id):
     template = "counsellor-profile.html"
@@ -71,7 +111,6 @@ def counsellor_profile(request, counsellor_id):
     return render(request, template, context)
 
 
-
 def login_client(request):
     template = "login.html"
     context = {}
@@ -79,11 +118,12 @@ def login_client(request):
     if request.method == 'POST':
         email    = request.POST.get('email')
         password = request.POST.get('password')
-
+        
         try:
             user = User.objects.get(email__iexact=email)
             password_correct = User.check_password(user, password)
         except(TypeError, ValueError, OverflowError, User.DoesNotExist) as e:
+            print(e)
             user = None
             password_correct = False
 
@@ -110,8 +150,8 @@ def login_client(request):
                 context['error'] = 'Wrong Email / Password combination.'
         else:
             context['error'] = 'No matching account found.'
-
     return render(request, template, context)
+
 
 def login_counsellor(request):
     template = "admin-login.html"
@@ -147,7 +187,7 @@ def login_counsellor(request):
                     return redirect(nextPage)
             except Exception as e:
                 print(e)
-                return redirect('counsellor:home')
+                return redirect('counsellor:home_counsellor')
         else:
             print('No such account exists')
             return redirect('.')

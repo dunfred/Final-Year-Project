@@ -8,34 +8,180 @@
 
 {% block main_body %}
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <div class="sub-header">Confidential Form</div>
-            
-            <form>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
+    <div class="confidential-wrapper"> 
+        <div class="confidential-container">
+                <div class="sub-header">Confidential Form</div>
+                <div class="user-filter">
+                    <div class="confidential-form-title">Are you a student</div>
+                    <div class="category-form">
+                        <select name="user" id="user" class="category-form-wrap">
+                            <option value="">Choose</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
+
+
+                <!-- Form for users who are students -->
+                <div class="student-form-container">
+                    <form action=""> 
+                        <div class="confidential-form-section">
+                            <div class="confidential-form-title">Academic Details</div>
+                            <div class="layout">
+                                <input type="text" placeholder="Registration Number"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Programme"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Faculty/Department"/>
+                            </div>
+                            <!-- <div class="category-form category-extra">
+                                <select name="cars" id="sex" class="category-form-wrap" >
+                                    <option value="Sex">Programme</option>
+                                    <option value="Sex">B.sc Information Technology</option>
+                                    <option value="Sex">B.sc Information Technology</option>
+                                  </select>
+                            </div>
+                            <div class="category-form category-extra">
+                                <select name="cars" id="sex" class="category-form-wrap" >
+                                    <option value="Sex">Faculty/Department</option>
+                                    <option value="Sex">B.sc Information Technology</option>
+                                    <option value="Sex">B.sc Information Technology</option>
+                                  </select>
+                            </div> -->
+                            <div class="category-form category-extra">
+                                <select name="cars" id="sex" class="category-form-wrap" >
+                                    <option value="Sex">Level</option>
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
+                                    <option value="300">300</option>
+                                    <option value="400">400</option>
+                                  </select>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Hall of Residence/Hostel"/>
+                            </div>
+                        </div>
+
+                        <!-- Form for both users and workers -->
+                        <div class="confidential-form-section">
+                            <div class="confidential-form-title">Emergency Details</div>
+                            <div class="layout">
+                                <input type="text" placeholder="Emergency Contact Name"/>
+                            </div>
+                            <div class="layout">
+                                <input type="number" placeholder="Emergency Contact Numer"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Referral"/>
+                                <div class="layout-sub">Where we should take you incase of referral</div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Any previous Counselling?</div>
+                                <div class="category-form category-extra">
+                                    <select name="user" id="user" class="category-form-wrap">
+                                        <option value="">Choose</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Are you on any prescribed medication?</div>
+                                <div class="category-form category-extra">
+                                    <select name="user" id="user" class="category-form-wrap">
+                                        <option value="">Choose</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Guardian Details</div>
+                                <div class="layout">
+                                    <input type="text" placeholder="Guardian Name"/>
+                                </div>
+                                <div class="layout">
+                                    <input type="number" placeholder="Guardian Number"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
-                </div>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
-                </div>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
-                </div>
-                <div class="layout">
-                    <input type="email" placeholder="Details"/>
+
+
+                <!-- Form for users who are workers -->
+                <div class="worker-form-container">
+                    <form action="" class=""> 
+                        <div class="confidential-form-section">
+                            <div class="confidential-form-title">Worker Details</div>
+                            <div class="layout">
+                                <input type="text" placeholder="Type of work"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Name of organization"/>
+                            </div>
+                        </div>
+
+                        <!-- Form for both users and workers -->
+                        <div class="confidential-form-section">
+                            <div class="confidential-form-title">Emergency Details</div>
+                            <div class="layout">
+                                <input type="text" placeholder="Emergency Contact Name"/>
+                            </div>
+                            <div class="layout">
+                                <input type="number" placeholder="Emergency Contact Numer"/>
+                            </div>
+                            <div class="layout">
+                                <input type="text" placeholder="Referral"/>
+                                <div class="layout-sub">Where we should take you incase of referral</div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Any previous Counselling?</div>
+                                <div class="category-form category-extra">
+                                    <select name="user" id="user" class="category-form-wrap">
+                                        <option value="">Choose</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Are you on any prescribed medication?</div>
+                                <div class="category-form category-extra">
+                                    <select name="user" id="user" class="category-form-wrap">
+                                        <option value="">Choose</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="confidential-form-section">
+                                <div class="confidential-form-title">Guardian Details</div>
+                                <div class="layout">
+                                    <input type="text" placeholder="Guardian Name"/>
+                                </div>
+                                <div class="layout">
+                                    <input type="number" placeholder="Guardian Number"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 
-                <a href="#">
-                    <div class="submit-form">Submit</div>
-                </a>
-            </form>
+                <!-- Form for submit button -->
+                <button class="submit-form">Submit Consent</button>
+            </div>   
+        </div>
+    </div> 
+
+    <!-- Error message pop up. The styling can be found in the global CSS-->
+    <div class="error-card-container">
+        <div class="error-card">
+            <img src="../static/favicon/error.svg" alt="upload Icon">             
+            <div class="error-card-message">This is an error message</div>
         </div>
     </div>
 </body>

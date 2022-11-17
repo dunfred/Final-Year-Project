@@ -50,4 +50,13 @@ class Honorifics(EnumChoiceToTupleMixin, Enum):
     MS      = "Ms"
     DR      = "Dr"
 
+class BookingStatus(EnumChoiceToTupleMixin, Enum):
+    Pending   = "Pending"
+    New       = "New"
+    Completed = "Completed"
+
+
+class BookingType(EnumChoiceToTupleMixin, Enum):
+    VIRTUAL       = "VIRTUAL MEETING"
+    MEET_IN_PERSON = "MEET IN PERSON"
 

@@ -14,39 +14,40 @@
                     <div class="sub-header">Counsellor Sign Up</div>
 
                     <form method="POST" action="{% url 'counsellor:register_counsellor' %}"> 
+                        {% csrf_token %}
                         <div class="admin-form-section">
                             <div class="admin-image">
                                 <img src="{% static 'favicon/upload-image.svg' %}" alt="upload Icon">
                             </div>
                             <div class="admin-form-title">Upload Profile Image</div>
                             <form action="" class="upload-image">
-                                <input type="file" id="myFile" name="filename">
+                                <input name="profile" type="file" id="myFile" name="filename">
                             </form>
                         </div>
 
                         <div class="admin-form-section">
                             <div class="admin-form-title">Personal Details</div>
                             <div class="layout">
-                                <input type="text" placeholder="First Name"/>
+                                <input name="first_name" type="text" placeholder="First Name"/>
                             </div>
                             <div class="layout">
-                                <input type="text" placeholder="Last Name"/>
+                                <input name="last_time" type="text" placeholder="Last Name"/>
                             </div>
                             <div class="layout">
-                                <input type="text" placeholder="Other Names"/>
+                                <input name="other_names"  type="text" placeholder="Other Names"/>
                             </div>
                         </div>
                         
                         <div class="admin-form-section">
                             <div class="admin-form-title">Security Details</div>
                             <div class="layout">
-                                <input type="email" placeholder="Counsellor Email"/>
+                                <input name="email"  type="email" placeholder="Counsellor Email"/>
                             </div>
                             <div class="layout">
-                                <input type="number" placeholder="Mobile Number"/>
+                                <input name="phone" type="tel" placeholder="Mobile Number"/>
                             </div>
                             <div class="layout">
-                                <input type="password" placeholder="Password"/>
+                                <input name="password" type="password" placeholder="Password"/>
                             </div>
                         </div>
                         
@@ -60,5 +61,9 @@
                 </form>
             </div>
         </div>
+
+        {% if error %}
+            {% include 'includes/alert.html' %}
+        {% endif %}
     </body>
 {% endblock main_body %}

@@ -11,18 +11,17 @@
 
 <body>
     <div class="wrapper">
-        {{ error }}
        <div class="container">
                  <div class="sub-header">Login</div>
                 
                  <form method="POST" action="{% url 'counsellor:login_client' %}">
                     {% csrf_token %}
                      <div class="layout">
-                         <input type="email" placeholder="Student Email"/>
+                         <input name="email" type="email" placeholder="Student Email"/>
                      </div>
 
                      <div class="layout">
-                         <input type="password" placeholder="Password"/>
+                         <input name="password" type="password" placeholder="Password"/>
                      </div>
                      
                      <div class="forgot-password"><a href="forget.html">Forgot password?</a></div>
@@ -35,5 +34,9 @@
              </form>
          </div>
      </div>
+
+    {% if error %}
+        {% include 'includes/alert.html' %}
+    {% endif %}
  </body>
 {% endblock main_body %}

@@ -24,10 +24,6 @@
                     <div class="layout">
                         <input required name="email" type="email" placeholder="Student Email"/>
                     </div>
-                    
-                    <div class="layout">
-                        <input required name="username" type="text" placeholder="Username"/>
-                    </div>
 
                     <div class="layout">
                         <input required name="phone" type="phone" placeholder="Cell Phone"/>
@@ -45,5 +41,10 @@
             </form>
         </div>
     </div>
+
+    
+    {% if error %}
+        {% include 'includes/alert.html' %}
+    {% endif %}
 </body>
 {% endblock main_body %}

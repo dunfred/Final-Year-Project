@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/admin-homepage.css' %}">
+{% endblock custom_styles %}
+
+{% block main_body %}
+<body>
+    <div class="homepage-nav">
+        <div class="page-nav">
+            <a href="{% url 'counsellor:index' %}" class="page-logo"><img src="{% static 'favicon/logo.svg' %}" alt="logo"/></a>
+            <div class="user-profile">Profile</div> 
+        </div>
+        <div class="switch-nav">
+            <div class="booking-nav">Bookings</div>
+            {% comment %} <div class="complete-nav">Completed</div> {% endcomment %}
+        </div>
+    </div>
+    <div class="bookings">
+        {% for booking in bookings %}
+            <a href="{% url 'counsellor:client_approval' client_id=booking.client.id %}?booking_id={{booking.id}}">
+                <div class="book">
+                    <div class="booking-icon">
+                        <img src="{% static 'favicon/calendar.svg' %}" />
+                    </div>
+                    <div class="book-client">
+                        <div class="book-title">{{ booking.client.get_full_name|title }}</div>
+                        <div class="book-subtitle">Student</div>
+                    </div>
+                    <div class="book-info">
+                        <div class="book-status 
+                            {% if booking.status == "Pending" %}
+                                status-pending
+                            {% elif booking.status == "New" %}
+                                status-new
+                            {% else %}
+                                status-completed
+                            {% endif %}
+                        ">{{ booking.status }}</div>
+                        <div class="book-time">{{ booking.created_at|date:"g:i A"}}</div> 
+                        {% comment %} date:"d/m/Y H:i A" {% endcomment %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+</body>
+{% endblock main_body %}
+
+    

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/admin-client-approval.css' %}">
+{% endblock custom_styles %}
+
+
+{% block main_body %}	
+    <body>
+        <div class="approval-profile-container">
+            <div class="approval-profile-nav">
+                <div class="approval-card">
+                    <div class="approval-detail">
+                        <div class="approval-category"> Student</div>
+                        <div class="approval-title"> 
+                            {{client.sex}}
+                        </div>
+                    </div>
+
+                    <div class="approval-profile-cta">
+                        <form submit="index.html" class="approval-cta-icons">
+                            <a class="approval-cta-icon" href="tel:{{client.phone}}">
+                                <img src="{% static 'favicon/call.svg' %}" alt=" call"/>
+                            </a>
+                            <a class="approval-cta-icon" href="mailto:{{client.email}}">
+                                <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
+                            </a>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+
+
+
+            <!-- Details on client booking Section -->
+            <div class="client-details">
+                <div class="client-detail">
+                    <div class="detail-title">Booking Type</div>
+                    <div class="detail-subtitle">
+                        {% if booking.booking_type == "MEET_IN_PERSON" %}
+                            MEET IN PERSON
+                        {% else %}
+                            VIRTUAL MEETING
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="client-detail">
+                    <div class="detail-title">Date</div>
+                    <div class="detail-subtitle"> {{ booking.start_date|date:"d/m/Y"}}</div>
+                </div>
+                <div class="client-detail">
+                    <div class="detail-title">Time</div>
+                    <div class="detail-subtitle"> {{ booking.start_time|date:"g:i A"}} - {{ booking.end_time|date:"g:i A"}} </div>
+                </div>
+                <div class="client-detail">
+                    <div class="detail-title">Consent Form</div>
+                    <div class="detail-subtitle-consent">
+                        <a href="#">Click for Counsellee Consent Form</a>
+                        <img src="{% static 'favicon/arrow-left.svg' %}">
+                    </div>
+                </div>
+                <form class="approval-cta">
+                    <button class="approval-decline">Decline</button>
+                    <button class="approval-accept">Accept</button>
+                </form>
+            </div>
+
+
+
+        <!-- Modal for appointment approval -->
+        <div class="book-modal-container" hidden>
+            <div class="book-modal">
+                <div class="book-modal-wrap">
+                    <div class="">
+                        <img src="/static/images/success.png"/>
+                        <div class="success-text">Sent Successfully</div>
+                        <button class="okay-button">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </body>
+{% endblock main_body %}
+
+{% block custom_html %}
+{% endblock custom_html %}

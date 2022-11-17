@@ -10,15 +10,16 @@
     <body>
        <div class="wrapper">
           <div class="container">
-                    <div class="sub-header">Login</div>
+                    <div class="sub-header">Counsellor Login</div>
 
                     <form method="POST" action="{% url 'counsellor:login_counsellor' %}">
+                        {% csrf_token %}
                         <div class="layout">
-                            <input type="email" placeholder="Email"/>
+                            <input name="email" type="email" placeholder="Email"/>
                         </div>
 
                         <div class="layout">
-                            <input type="password" placeholder="Password"/>
+                            <input name="password" type="password" placeholder="Password"/>
                         </div>
                         
                         <div class="forgot-password"><a href="{% url 'counsellor:forgot_password' %}">Forgot password?</a></div>
@@ -31,6 +32,11 @@
                 </form>
             </div>
         </div>
+
+
+        {% if error %}
+            {% include 'includes/alert.html' %}
+        {% endif %}
     </body>
 {% endblock main_body %}
 

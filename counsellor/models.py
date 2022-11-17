@@ -2,9 +2,10 @@ from django.db import models
 from iCounsel.mixin import TimeStampMixin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
-from counsellor.enums import Gender, Honorifics, StringBoolChoices, UserType, Religion, Level, MaritalStatus
+from counsellor.enums import BookingType, Gender, Honorifics, StringBoolChoices, UserType, Religion, Level, MaritalStatus, BookingStatus
 from counsellor.managers import CustomUserManager, CustomCounsellorManager
 from counsellor.constants import *
+from django.utils import timezone
 
 # Create your models here.
 class User(TimeStampMixin, AbstractUser):
@@ -107,6 +108,26 @@ class AvailableDay(TimeStampMixin, models.Model):
         super(AvailableDay, self).save(*args, **kwargs)
 
 
+class Booking(TimeStampMixin, models.Model):
+    client       = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_bookings")
+    counsellor   = models.ForeignKey(Counsellor, on_delete=models.CASCADE, related_name="cousellor_bookings")
+    meet_id      = models.CharField(_("Meeting ID"), max_length=100, null=True, blank=True)
+    booking_type = models.CharField(_("Booking Type"), default=BookingType.VIRTUAL, choices=BookingType.choices(), max_length=20)
+    
+    start_date   = models.DateField(default=timezone.now, null=False, blank=False)
+    start_time   = models.TimeField(default=timezone.now, null=False, blank=False)
+    end_time     = models.TimeField(default=timezone.now, null=False, blank=False)
+
+    status       = models.CharField(_("Status"), default=BookingStatus.New, choices=BookingStatus.choices(), max_length=10)
+    created_at   = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Booking')
+        verbose_name_plural = _('Bookings')
+
+    def __str__(self):
+        return f"{self.client.email} - {self.counsellor.email}: {self.status}".upper()
+
 
 class CounsellingType(TimeStampMixin, models.Model):
     type           = models.CharField(_("Type"), max_length=100, unique=True)
@@ -120,8 +141,7 @@ class CounsellingType(TimeStampMixin, models.Model):
 
 
 class Consent(TimeStampMixin, models.Model):
-    user                = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_consents")
-    counselor           = models.ForeignKey(Counsellor, on_delete=models.SET_NULL, related_name="cousellor_consents", null=True, blank=True)
+    user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_consents")
 
     # Student fields 
     registration_number = models.CharField(_("Registration Number"), default=None, max_length=25, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
