@@ -158,6 +158,14 @@
     color: #707070;
 }  
 
+
+
+
+
+
+
+
+
 /*Responsive Desktop view*/
 @media only screen and (min-width: 768px){
     .homepage-wrapper{
@@ -165,9 +173,26 @@
     }
     
     .homepage-container{
+        width: 60%;
+    }
+
+    .search-container{
+        display: flex;
+        justify-content: center;
         width: 100%;
     }
+
+    .search-wrap{
+        width: 60%;
+    }
 }
+
+
+
+
+
+
+
     
 /*Responsive Tablet view*/
 @media only screen and (min-width: 768px) and (max-width: 1024px) {

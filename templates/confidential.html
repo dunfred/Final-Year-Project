@@ -9,7 +9,7 @@
 {% block main_body %}
 <body>
     <div class="confidential-wrapper"> 
-        <form method="POST" action="{% url 'counsellor:confidential' %}">
+        <form method="POST" action="{% url 'counsellor:confidential' %}" class="confidential-container-wrap">
             {% csrf_token %}
 
             <div class="confidential-container">

@@ -142,10 +142,6 @@ body{
 
 
 
-
-
-
-
 /* The main styling for the modal */
 .book-modal-container{
     /* display: none; */
@@ -232,4 +228,22 @@ body{
 
 .book-modal-type-detail{
     margin-top: 16px;
+}
+
+
+
+
+
+
+/*Responsive Desktop view*/
+@media only screen and (min-width: 768px){
+    .counsellor-profile-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .counsellor-profile-wrap{
+        width: 60%;
+    }
 }

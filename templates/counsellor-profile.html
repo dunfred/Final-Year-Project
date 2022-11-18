@@ -8,49 +8,49 @@
 
 
 {% block main_body %}	
-    <body>
+    <body>  
         <div class="counsellor-profile-container">
-            <div class="counsellor-profile-nav">
-                <a href="#" class="back-to-home" onclick="history.back()">
-                    <img src="{% static 'favicon/arrow-left.svg' %}" alt=" arrow left"/>
-                    Counsellor profile
-                </a>
-                <div class="counsellor-card">
-                    <div class="counsellor-image">
-                        {% if counsellor.profile %}
-                            <img src="{{ counsellor.profile.url }}" alt=" profile picture"/>
-                        {% else %}
-                            <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
-                        {% endif %}
+            <div class="counsellor-profile-wrap">
+                <div class="counsellor-profile-nav">
+                    <a href="#" class="back-to-home" onclick="history.back()">
+                        <img src="{% static 'favicon/arrow-left.svg' %}" alt=" arrow left"/>
+                        Counsellor profile
+                    </a>
+                    <div class="counsellor-card">
+                        <div class="counsellor-image">
+                            {% if counsellor.profile %}
+                                <img src="{{ counsellor.profile.url }}" alt=" profile picture"/>
+                            {% else %}
+                                <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
+                            {% endif %}
+                        </div>
+                        <div class="counsellor-detail-wrap">
+                            <div class="counsellor-name">
+                                {{ counsellor.title|title}}. {{ counsellor.get_full_name|title}}
+                            </div>
+                            <div class="counsellor-category-wrap">
+                                <div class="counsellor-category">{{ categories_str}} Counsellor</div>
+                            </div>
+                            <div class="counsellor-title">
+                                Head of Counselling Department
+                            </div>
+                        </div>
                     </div>
-                    <div class="counsellor-detail-wrap">
-                        <div class="counsellor-name">
-                            {{ counsellor.title|title}}. {{ counsellor.get_full_name|title}}
-                        </div>
-                        <div class="counsellor-category-wrap">
-                            <div class="counsellor-category">{{ categories_str}} Counsellor</div>
-                        </div>
-                        <div class="counsellor-title">
-                            Head of Counselling Department
-                        </div>
-                    </div>
+                    <div class="profile-cta">
+                        <form submit="index.html" class="cta-icons">
+                            <a class="cta-icon" href="tel:{{counsellor.phone}}">
+                                <img src="{% static 'favicon/call.svg' %}" alt=" call"/>
+                            </a>
+                            <a class="cta-icon" href="mailto:{{counsellor.email}}">
+                                <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
+                            </a>
+                        </form> 
+                        <button id="book-cta" class="book-cta">Book Appointment</button>
+                    </div> 
                 </div>
-                <div class="profile-cta">
-                    <form submit="index.html" class="cta-icons">
-                        <a class="cta-icon" href="tel:{{counsellor.phone}}">
-                            <img src="{% static 'favicon/call.svg' %}" alt=" call"/>
-                        </a>
-                        <a class="cta-icon" href="mailto:{{counsellor.email}}">
-                            <img src="{% static 'favicon/email.svg' %}" alt=" email"/>
-                        </a>
-                    </form> 
-                    <button id="book-cta" class="book-cta">Book Appointment</button>
-                </div> 
-            </div>
 
 
-
-            <!-- Details on counsellors Bio Section -->
+                <!-- Details on counsellors Bio Section -->
             <div class="counsellor-details">
                 <div class="counsellor-detail">
                     <div class="counsellor-detail-header">Bio</div>
@@ -64,6 +64,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+            </div>
             </div>
         </div>
         
