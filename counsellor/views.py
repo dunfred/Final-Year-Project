@@ -272,6 +272,7 @@ def register_counsellor(request):
         first_name       = request.POST.get('first_name')
         last_name        = request.POST.get('last_name')
         phone            = request.POST.get('phone')
+        avatar           = request.FILES.get("avatar")
         password         = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         
@@ -290,6 +291,9 @@ def register_counsellor(request):
                             )
                             user.set_password(password)
                             user.is_active = True
+                            if avatar:
+                                user.avatar = avatar
+                                
                             user.save()
 
                             print(user)

@@ -153,9 +153,23 @@
     font-size: 12px;
 }
 
-
 .profile-details{
     font-size: 14px;
     color: #707070;
 }  
 
+/*Responsive Desktop view*/
+@media only screen and (min-width: 768px){
+    .homepage-wrapper{
+        width: 100%;
+    }
+    
+    .homepage-container{
+        width: 100%;
+    }
+}
+    
+/*Responsive Tablet view*/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    
+}
