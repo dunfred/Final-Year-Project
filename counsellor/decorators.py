@@ -40,7 +40,7 @@ def consent_approval_taken(view_func, redirect_url="counsellor:confidential"):
     '''
     @functools.wraps(view_func)
     def wrapper(request, *args, **kwargs):
-        print(request.META.get('HTTP_REFERER'))
+        # print(request.META.get('HTTP_REFERER'))
         if request.user.is_authenticated:
             if Consent.objects.filter(user=request.user).exists():
                 return view_func(request,*args, **kwargs)
