@@ -1,18 +1,72 @@
 {% extends 'base.html' %}
-
 {% load static %}
-
-{% block custom_styles %}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-{% endblock custom_styles %}
 
 
 {% block main_body %}
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <div class="title">About Page Under Development</div>
+    <nav>
+        <div class="logo-wrap">
+            <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'images/logo.png' %}" alt="UCC counsellor logo"/></a>
+            <div class="logo-title">UCC Counselling Service</div>
         </div>
-    </div>
+        <label for="toggle">
+            &#9776;
+        </label>
+        <input type="checkbox" id="toggle">
+        <ul class="menu">
+            <li><a href="{% url 'counsellor:about' %}">About</a></li>
+            <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>
+        </ul>
+    </nav> 
+    <!-- <section class="intro-about-wrapp">
+        <div class="intro-about-wrap"><img src="{% static 'images/doctor.jpg' %}" alt="mockup"></div>
+    </section> -->
+    
+    <section class="landingpage-container">
+        <section class="services">
+            <h1 class="services-title about-title">About</h1>
+            <div class="services-wrap reverse-card">
+                <div class="services-image">
+                    <img src="{% static 'images/head.jpg' %}" alt="mockup">
+                </div>
+                <div class="services-detail">
+                    <div class="services-detail-wrap">
+                        <div class="services-detail-title">
+                            DEPARTMENT OF GUIDANCE AND COUNSELING
+                        </div>
+                        <br class="services-detail-info"> Our philosophy of education is that all students are unique and must have a stimulating educational environment where they can grow physically, mentally, emotionally, and socially. 
+                            It is my desire to create this type of atmosphere where 
+                            students can build their self-esteem and meet their full 
+                            potential. I will provide a safe environment where students 
+                            are invited to share their ideas without fear. I will also 
+                            develop a sense of community in my classes where students are 
+                            responsible not only to themselves, but to the other members 
+                            of the community, including me.<br/><br/><br/>
+                            <div class="depthead">HEAD OF DEPARTMENT</div>
+                            Rev. Fr. Dr. Anthony Kwabena Nkyi
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+    
+    
+    <footer>
+        <ul class="footer-links">
+            <li>
+            <a href="{% url 'counsellor:about' %}">About</a></li>
+            <li>
+            <a href="{% url 'counsellor:conditions' %}">Terms & Conditions</a></li>
+              <li>
+            <a href="{% url 'counsellor:support' %}">Support</a></li>
+        </ul> 
+        <div class="footer-copyright">
+            © UCC, Department of Computer Science and IT 2022
+        </div>
+    </footer>  
+    
+    <!--Moving word javascript links-->
 </body>
 {% endblock main_body %}
