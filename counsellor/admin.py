@@ -164,8 +164,8 @@ class BookingAdmin(admin.ModelAdmin):
             messages.error(request, "Starting date cannot be any day before current")
             return redirect('.')
             
-        elif obj.start_time < obj.end_time:
-            messages.error(request, "Starting time cannot be less than ending time.")
+        elif obj.start_time > obj.end_time:
+            messages.error(request, "Starting time cannot be more than ending time.")
             return redirect('.')
 
         elif obj.start_time == obj.end_time:
