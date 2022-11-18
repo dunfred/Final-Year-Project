@@ -159,11 +159,17 @@
 }  
 
 
+.user-profile-wrap{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+}
 
-
-
-
-
+.user-profile-wrap li{
+    list-style: none;
+    text-decoration: none;
+}
 
 
 /*Responsive Desktop view*/
