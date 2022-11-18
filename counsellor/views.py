@@ -334,6 +334,8 @@ def confidential(request):
         programme           = request.POST.get("programme")
         department          = request.POST.get("department")
         level               = request.POST.get("level")
+        if level:
+            level = int(level)
         residence           = request.POST.get("residence")
         home_phone          = request.POST.get("home_phone")
         worker              = request.POST.get("worker")
