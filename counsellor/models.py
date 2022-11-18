@@ -144,30 +144,30 @@ class Consent(TimeStampMixin, models.Model):
     user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_consents")
 
     # Student fields 
-    registration_number = models.CharField(_("Registration Number"), default=None, max_length=25, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
+    registration_number = models.CharField(_("Registration Number"), default=None, max_length=50, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
     programme           = models.CharField(_("Programme"), default=None, max_length=100, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
     department          = models.CharField(_("Faculty/Department"), default=None, max_length=100, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
-    level               = models.CharField(_("Level"), default=None, max_length=10, choices=Level.choices(), blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
+    level               = models.CharField(_("Level"), default=None, max_length=50, choices=Level.choices(), blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
     residence           = models.CharField(_("Hall of Res./Hostel"), default=None, max_length=100, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
-    home_phone          = models.CharField(_("Home Phone"), default=None, max_length=10, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
+    home_phone          = models.CharField(_("Home Phone"), default=None, max_length=50, blank=True, null=True, help_text=STUDENT_FIELDS_HELP_TEXT)
 
     # Non-Student fields
-    worker              = models.CharField(_("Worker"), max_length=10, default=StringBoolChoices.NO, choices=StringBoolChoices.choices(), blank=True, null=True, help_text=NON_STUDENT_FIELDS_HELP_TEXT)
+    worker              = models.CharField(_("Worker"), max_length=50, default=StringBoolChoices.NO, choices=StringBoolChoices.choices(), blank=True, null=True, help_text=NON_STUDENT_FIELDS_HELP_TEXT)
     work_type           = models.CharField(_("Type Of Work"), max_length=100, blank=True, null=True, help_text=NON_STUDENT_FIELDS_HELP_TEXT)
     organization        = models.CharField(_("Name of Organization"), max_length=100, blank=True, null=True, help_text=NON_STUDENT_FIELDS_HELP_TEXT)
 
     # General fields
     emergency_person    = models.CharField(_("Emergency Contact Name"), default=None, max_length=100, blank=True, null=True)
-    emergency_contact   = models.CharField(_("Emergency Contact Phone"), default=None, max_length=10, blank=True, null=True)
+    emergency_contact   = models.CharField(_("Emergency Contact Phone"), default=None, max_length=50, blank=True, null=True)
     
     # Other information
     referrer            = models.CharField(_("Referrer"), max_length=100, blank=True, null=True, help_text="Whom may we thank for referring you?")
-    prev_counselling    = models.CharField(_("Previous Counselling"), max_length=10, default=StringBoolChoices.NO , choices=StringBoolChoices.choices(), blank=True, null=True, help_text="Any previous counselling on present concern?")
-    on_medication       = models.CharField(_("On Prescribed Medication"), max_length=10, default=StringBoolChoices.NO , choices=StringBoolChoices.choices(), blank=True, null=True, help_text="Are you on any pescribed medications?")
+    prev_counselling    = models.CharField(_("Previous Counselling"), max_length=50, default=StringBoolChoices.NO , choices=StringBoolChoices.choices(), blank=True, null=True, help_text="Any previous counselling on present concern?")
+    on_medication       = models.CharField(_("On Prescribed Medication"), max_length=50, default=StringBoolChoices.NO , choices=StringBoolChoices.choices(), blank=True, null=True, help_text="Are you on any pescribed medications?")
 
     # General fields
     guardian            = models.CharField(_("Guardian Name"), max_length=100, blank=True, null=True, help_text=GUARDIAN_HELP_TEXT)
-    guardian_phone      = models.CharField(_("Guardian Phone"), max_length=10, blank=True, null=True, help_text=GUARDIAN_HELP_TEXT)
+    guardian_phone      = models.CharField(_("Guardian Phone"), max_length=50, blank=True, null=True, help_text=GUARDIAN_HELP_TEXT)
 
     def __str__(self):
-        return f"{self.user}: {self.counselor}"
+        return f"{self.user}"

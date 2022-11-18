@@ -47,31 +47,39 @@
    <div class="homepage-wrapper">
       <div class="homepage-container">
              <!-- counsellor cards -->
-            {% for counsellor_usr in counsellors %}
-            <div class="profile-card">
-                 <a href="{% url 'counsellor:counsellor_profile' counsellor_id=counsellor_usr.id %}" class="profile-card-wrap">
-                     <div class="profile-image">
-                        {% if counsellor_usr.profile %}
-                            <img src="{{ counsellor_usr.profile.url }}" alt=" profile picture"/>
-                        {% else %}
-                            <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
-                        {% endif %}
 
-                    </div>
-                    <div class="profile-detail-wrap">
-                        <div class="profile-name"> 
-                            {{counsellor_usr.title|title}}. {{counsellor_usr.get_full_name|title}}
+            {% if counsellors %}
+                {% for counsellor_usr in counsellors %}
+                <div class="profile-card">
+                    <a href="{% url 'counsellor:counsellor_profile' counsellor_id=counsellor_usr.id %}" class="profile-card-wrap">
+                        <div class="profile-image">
+                            {% if counsellor_usr.profile %}
+                                <img src="{{ counsellor_usr.profile.url }}" alt=" profile picture"/>
+                            {% else %}
+                                <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
+                            {% endif %}
                         </div>
-                        <div class="profile-category-wrap">
-                            <div class="profile-category">{{request.GET.category|title}} Counsellor</div>
+
+                        <div class="profile-detail-wrap">
+                            <div class="profile-name"> 
+                                {{counsellor_usr.title|title}}. {{counsellor_usr.get_full_name|title}}
+                            </div>
+                            <div class="profile-category-wrap">
+                                <div class="profile-category">{{request.GET.category|title}} Counsellor</div>
+                            </div>
+                            <div class="profile-detail-wrap">
+                                Issues about mariage is all my expertise.
+                            </div>
                         </div>
-                        <div class="profile-details">
-                            Issues about mariage is all my expertise.
-                        </div>
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
+                    </a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <center class="profile-detail-wrap" style="margin-top:25px">
+                    No counsellors added to database yet.
+                </center>
+            {% endif %}
+
         </div>
     </div>
 </body>

@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from counsellor.models import CounsellingType, Counsellor, User, Booking
+from counsellor.decorators import consent_approval_taken
+from counsellor.models import Consent, CounsellingType, Counsellor, User, Booking
 
 # Create your views here.
 
@@ -15,8 +16,15 @@ def index(request):
     return render(request, template, context)
 
 @login_required(login_url='counsellor:login_client')
+@consent_approval_taken
 def home(request):
     template = "homepage.html"
+
+    # if request.user.is_authenticated:
+    #     print(request.user)
+    #     print(request.user.user_type)
+    #     print(isinstance(request.user, Counsellor))
+
 
     q        = request.GET.get('q', None)
     category = request.GET.get('category', None)
@@ -78,6 +86,7 @@ def client_approval_admin(request, client_id):
 
 
 @login_required(login_url='counsellor:login_client')
+@consent_approval_taken
 def client_bookings(request):
     template = "client-bookings.html"
     context = {}
@@ -189,8 +198,7 @@ def login_counsellor(request):
                 print(e)
                 return redirect('counsellor:home_counsellor')
         else:
-            print('No such account exists')
-            return redirect('.')
+            context['error'] = 'Invalid credentials provided'
 
     return render(request, template, context)
 
@@ -207,29 +215,49 @@ def register_client(request):
     context = {}
 
     if request.method == 'POST':
-        email    = request.POST.get('email')
-        password = request.POST.get('password')
-        first_name  = request.POST.get('first_name')
-        last_name   = request.POST.get('last_name')
-        username    = request.POST.get('username')
-        phone   = request.POST.get('phone')
-        pssword = request.POST.get('pssword')
+        email            = request.POST.get('email')
+        password         = request.POST.get('password')
+        first_name       = request.POST.get('first_name')
+        last_name        = request.POST.get('last_name')
+        phone            = request.POST.get('phone')
+        # user_type        = request.POST.get('user_type')
+
         
-        user = User(
-            email   = email,
-            password    = password,
-            first_name  = first_name,
-            last_name   = last_name,
-            username    = username,
-            phone   = phone,
-        )
-        user.set_password(pssword)
-        user.is_active = True
-        user.save()
+        password         = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        
+        if password == confirm_password:
+            if not User.objects.filter(email=email).exists():
+                if not Counsellor.objects.filter(email=email).exists():
+                    if not User.objects.filter(phone=phone).exists():
+                        if not Counsellor.objects.filter(phone=phone).exists():
+                            user = User(
+                                email   = email,
+                                password    = password,
+                                first_name  = first_name,
+                                last_name   = last_name,
+                                phone   = phone,
+                                # user_type=user_type
+                            )
+                            user.set_password(password)
+                            user.is_active = True
+                            user.save()
 
-        print(user)
+                            print(user)
+                            
+                            login(request, user, backend='counsellor.backend.MultipleAuthBackend')
 
-        return redirect('counsellor:login_client')
+                            return redirect('counsellor:confidential')
+                        else:
+                            context['error'] = "This phone has already been registered"
+                    else:
+                        context['error'] = "This phone has already been registered"
+                else:
+                    context['error'] = "This email has already been registered"
+            else:
+                context['error'] = "This email has already been registered"
+        else:
+            context['error'] = "Passwords do not match"
 
     return render(request, template, context)
 
@@ -239,29 +267,46 @@ def register_counsellor(request):
     context = {}
 
     if request.method == 'POST':
-        email    = request.POST.get('email')
-        password = request.POST.get('password')
-        first_name  = request.POST.get('first_name')
-        last_name   = request.POST.get('last_name')
-        username    = request.POST.get('username')
-        phone   = request.POST.get('phone')
-        pssword = request.POST.get('pssword')
+        email            = request.POST.get('email')
+        password         = request.POST.get('password')
+        first_name       = request.POST.get('first_name')
+        last_name        = request.POST.get('last_name')
+        phone            = request.POST.get('phone')
+        password         = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
         
-        user = Counsellor(
-            email   = email,
-            password    = password,
-            first_name  = first_name,
-            last_name   = last_name,
-            username    = username,
-            phone   = phone,
-        )
-        user.set_password(pssword)
-        user.is_active = True
-        user.save()
+        if password == confirm_password:
+            if not User.objects.filter(email__iexact=email).exists():
+                if not Counsellor.objects.filter(email__iexact=email).exists():
 
-        print(user)
+                    if not User.objects.filter(phone=phone).exists():
+                        if not Counsellor.objects.filter(phone=phone).exists():
+                            user = Counsellor(
+                                email   = email,
+                                password    = password,
+                                first_name  = first_name,
+                                last_name   = last_name,
+                                phone   = phone,
+                            )
+                            user.set_password(password)
+                            user.is_active = True
+                            user.save()
 
-        return redirect('counsellor:login_counsellor')
+                            print(user)
+
+                            return redirect('counsellor:login_counsellor')
+
+                        else:
+                            context['error'] = "This phone has already been registered"
+                    else:
+                        context['error'] = "This phone has already been registered"
+                else:
+                    context['error'] = "This email has already been registered"
+            else:
+                context['error'] = "This email has already been registered"
+        else:
+            context['error'] = "Passwords do not match"
+
 
     return render(request, template, context)
 
@@ -281,6 +326,69 @@ def about(request):
 def confidential(request):
     template = "confidential.html"
     context = {}
+
+    if request.method == 'POST':
+        user                = request.user
+        is_student          = request.POST.get("is_student")
+        registration_number = request.POST.get("registration_number")
+        programme           = request.POST.get("programme")
+        department          = request.POST.get("department")
+        level               = request.POST.get("level")
+        if level:
+            level = int(level)
+        residence           = request.POST.get("residence")
+        home_phone          = request.POST.get("home_phone")
+        worker              = request.POST.get("worker")
+        work_type           = request.POST.get("work_type")
+        organization        = request.POST.get("organization")
+        emergency_person    = request.POST.get("emergency_person")
+        emergency_contact   = request.POST.get("emergency_contact")
+        referrer            = request.POST.get("referrer")
+        prev_counselling    = request.POST.get("prev_counselling")
+        on_medication       = request.POST.get("on_medication")
+        guardian            = request.POST.get("guardian")
+        guardian_phone      = request.POST.get("guardian_phone")
+
+        try:
+            if is_student:
+                consent = Consent.objects.create(
+                    user=user,
+                    registration_number = registration_number,
+                    programme           = programme,
+                    department          = department,
+                    level               = level,
+                    residence           = residence,
+                    home_phone          = home_phone,
+                    emergency_person    = emergency_person,
+                    emergency_contact   = emergency_contact,
+                    referrer            = referrer,
+                    prev_counselling    = prev_counselling,
+                    on_medication       = on_medication,
+                    guardian            = guardian,
+                    guardian_phone      = guardian_phone,
+                )
+            else:
+                consent = Consent.objects.create(
+                    user              = user,
+                    worker            = worker,
+                    work_type         = work_type,
+                    organization      = organization,
+                    emergency_person  = emergency_person,
+                    emergency_contact = emergency_contact,
+                    referrer          = referrer,
+                    prev_counselling  = prev_counselling,
+                    on_medication     = on_medication,
+                    guardian          = guardian,
+                    guardian_phone    = guardian_phone,
+                )
+            
+
+            print(consent)
+
+            return redirect('counsellor:home')
+        except Exception as e:
+            print(e)
+            context['error'] = f"Server error. {e}"
 
     return render(request, template, context)
 
