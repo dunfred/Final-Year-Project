@@ -5,17 +5,17 @@
 {% block main_body %}
 <body>
     <nav>
-        <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'favicon/logo.svg' %}" alt="UCC counsellor logo"/></a>
+        <div class="logo-wrap">
+            <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'images/logo.png' %}" alt="UCC counsellor logo"/></a>
+            <div class="logo-title">UCC Counselling Service</div>
+        </div>
         <label for="toggle">
             &#9776;
         </label>
         <input type="checkbox" id="toggle">
         <ul class="menu">
             <li><a href="{% url 'counsellor:about' %}">About</a></li>
-            <li><a href="{% url 'counsellor:confidential' %}">Terms & Conditions</a></li>
-            <li><a href="{% url 'counsellor:support' %}">Support</a></li>
             <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>
-            
         </ul>
     </nav> 
     
@@ -34,35 +34,12 @@
             <section class="goal">
                 <div class="goal-wrap">
                     <div class="goal-title">
-                        "We believe everyone needs a friend to talk to who has expert advice"
+                        "All students are unique and must have a stimulating educational environment where they can grow physically, mentally, emotionally, and socially."
                     </div>
                 </div>
             </section>    
-            <!-- <section class="works">
-                <div class="work-title">What we do</div>
-                <div class="work">
-                    <div class="work-detail">Every voter you add to your poll is given a unique voting key. No intruder can participate without a unique key. 
-                    </div>
-                </div>   
-        </section> -->
         <section class="services">
-            <h1 class="services-title">Our Services</h1>
-            {% comment %} <div class="services-wrap">
-                <div class="services-image">
-                    <img src="{% static 'images/depressed.jpg' %}" alt="mockup">
-                </div>
-                <div class="services-detail">
-                    <div class="services-detail-wrap">
-                        <div class="services-detail-title">
-                            Expert consultations
-                        </div>
-                        <div class="services-detail-info">We consult on issues from marrigae to mental and academical issues. 
-                            We have expert consultants who have dealt with lots of issues and had positive results.
-                        </div>
-                    </div>
-                </div>
-            </div> {% endcomment %}
-
+            <h1 class="services-title">About Us</h1>
             <div class="services-wrap reverse-card">
                 <div class="services-image">
                     <img src="{% static 'images/doctor.jpg' %}" alt="mockup">
@@ -70,19 +47,18 @@
                 <div class="services-detail">
                     <div class="services-detail-wrap">
                         <div class="services-detail-title">
-                            Expert consultations
+                            DEPARTMENT OF GUIDANCE AND COUNSELING
                         </div>
-                        <div class="services-detail-info">We consult on issues from marrigae to mental and academical issues. 
-                            We have expert consultants who have dealt with lots of issues and had positive results.
+                        <div class="services-detail-info">We consult on all types of Academic Issues, from mental health to Career choices. 
+                            We have expert consultants who have dealt with lots of issues and solved them with maximum performance.
                         </div>
                     </div>
                 </div>
             </div>
-            
         </section>
 
         <section class="features">
-            <h1 class="features-title">How we do it</h1>
+            <h1 class="features-title">Our Services</h1>
             <div class="features-flex">
                 <div class="features-wrap">
                     <div class="features-image">
@@ -93,8 +69,7 @@
                             <div class="features-detail-title">
                                 Find types of counsellors
                             </div>
-                            <div class="features-detail-info">Get featuress on Innovative research done by team members and random tech experts, and also know the tips and tricks they use in their daily works. 
-                            </div>
+                            <div class="features-detail-info">Discover all counsellors for your specific problem need. There arfe expects ready to help you solve your problems.</div>
                         </div>
                     </div>
                 </div>
@@ -107,8 +82,7 @@
                             <div class="features-detail-title">
                                 Book meetings
                             </div>
-                            <div class="features-detail-info">Get featuress on Innovative research done by team members and random tech experts, and also know the tips and tricks they use in their daily works. 
-                            </div>
+                            <div class="features-detail-info">Book an appointment with counsellors to have a one on one talk about issues you need clarity on or solved.</div>
                         </div>
                     </div>
                 </div>
@@ -121,8 +95,7 @@
                             <div class="features-detail-title">
                                 Video Calls
                             </div>
-                            <div class="features-detail-info">Get featuress on Innovative research done by team members and random tech experts, and also know the tips and tricks they use in their daily works. 
-                            </div>
+                            <div class="features-detail-info">If you're geographically restricted to meet counsellors in person. You have the option to book a virtual meeting with a counsellor.</div>
                         </div>
                     </div>
                 </div>
@@ -135,8 +108,7 @@
                             <div class="features-detail-title">
                                 Voice Calls
                             </div>
-                            <div class="features-detail-info">Get featuress on Innovative research done by team members and random tech experts, and also know the tips and tricks they use in their daily works. 
-                            </div>
+                            <div class="features-detail-info">You can also make calls with counsellors when ever you need their help. Depending on their availability times and schedules.</div>
                         </div>
                     </div>
                 </div>
