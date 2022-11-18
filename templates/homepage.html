@@ -15,32 +15,36 @@
             <a href="{% url 'counsellor:index' %}" class="page-logo"><img src="{% static 'images/logo.png' %}" alt="logo"/></a>
             <div class="user-profile">Profile</div>   
         </div>
-        <form class="searchbar" action="{% url 'counsellor:home' %}" method="GET">
-            {% comment %} {% csrf_token %} {% endcomment %}
-            <img src="{% static 'favicon/search.svg' %}" alt="search"/>
-            <input type="search" name="q" placeholder="Search Categories" class="searchfield"/>
-        </form>
-        <div class="counsellor-types">
-            <ul class="scrollmenu">
-                {% if request.GET.category %}
-                    <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home'%}"> <li>All</li> </a>
-                {% else %}
-                    <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home'%}"> <li class="selected">All</li> </a>
-                {% endif %}
-
-                {% if counselling_types %}
-                    {% for counselling_type in counselling_types %}
-                    <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home' %}?category={{counselling_type.type}}">
-                        <li {% if request.GET.category == counselling_type.type  %}
-                            class="selected"
-                            {% endif %}
-                        > 
-                            {{counselling_type.type|title}} 
-                        </li>
-                    </a>
-                    {% endfor %}
-                {% endif %}
-            </ul>
+        <div class="search-container">
+            <div class="search-wrap">
+                <form class="searchbar" action="{% url 'counsellor:home' %}" method="GET">
+                    {% comment %} {% csrf_token %} {% endcomment %}
+                    <img src="{% static 'favicon/search.svg' %}" alt="search"/>
+                    <input type="search" name="q" placeholder="Search Categories" class="searchfield"/>
+                </form>
+                <div class="counsellor-types">
+                    <ul class="scrollmenu">
+                        {% if request.GET.category %}
+                            <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home'%}"> <li>All</li> </a>
+                        {% else %}
+                            <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home'%}"> <li class="selected">All</li> </a>
+                        {% endif %}
+        
+                        {% if counselling_types %}
+                            {% for counselling_type in counselling_types %}
+                            <a style="color: inherit; text-decoration: none;" href="{% url 'counsellor:home' %}?category={{counselling_type.type}}">
+                                <li {% if request.GET.category == counselling_type.type  %}
+                                    class="selected"
+                                    {% endif %}
+                                > 
+                                    {{counselling_type.type|title}} 
+                                </li>
+                            </a>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
    <div class="homepage-wrapper">
@@ -55,7 +59,7 @@
                             {% if counsellor_usr.profile %}
                                 <img src="{{ counsellor_usr.profile.url }}" alt=" profile picture"/>
                             {% else %}
-                                <img src="{% static 'images/lady.jpg' %}" alt=" profile picture"/>
+                                <img src="{% static 'images/head.jpg' %}" alt=" profile picture"/>
                             {% endif %}
                         </div>
 

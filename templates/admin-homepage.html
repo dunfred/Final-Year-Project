@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block custom_styles %}
+{% block custom_styles %} 
 <link rel="stylesheet" href="{% static 'css/admin-homepage.css' %}">
 {% endblock custom_styles %}
 
@@ -11,15 +11,20 @@
     <div class="homepage-nav">
         <div class="page-nav">
             <a href="{% url 'counsellor:index' %}" class="page-logo"><img src="{% static 'images/logo.png' %}" alt="logo"/></a>
-            <div class="user-profile">Profile</div> 
+            <ul class="user-profile-wrap">
+                <li class="user-profile"><a href="#">Profile</a></li> 
+                <li class="user-profile"><a href="#">Logout</a></li> 
+            </ul>
         </div>
         <div class="switch-nav">
-            <div class="booking-nav">Bookings</div>
-            {% comment %} <div class="complete-nav">Completed</div> {% endcomment %}
+            <div class="switch-nav-wrap">
+                <div class="booking-nav">Bookings</div>
+            </div>
         </div>
     </div>
     <div class="bookings">
-        {% for booking in bookings %}
+        <div class="bookings-wrap">
+            {% for booking in bookings %}
             <a href="{% url 'counsellor:client_approval' client_id=booking.client.id %}?booking_id={{booking.id}}">
                 <div class="book">
                     <div class="booking-icon">
@@ -45,6 +50,7 @@
                 </div>
             </a>
         {% endfor %}
+        </div>
 </body>
 {% endblock main_body %}
 
