@@ -8,6 +8,18 @@
     height: 100%;
 }
 
+.logo-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-title{
+    font-size: 16px;
+    font-weight: 600;
+}
+
 nav{
     display: flex;
     justify-content: space-between;
@@ -67,13 +79,33 @@ label {
 .intro{
     display: flex;
     align-items: center;
-    background-image: url(../images/lady.jpg);
+    background-image: url(../images/ucc-gate-01.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
     width: 100%;
     overflow: hidden;
     position: relative;
+}
+
+.intro-about-wrapp{
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.depthead{
+    font-weight: 600;
+}
+
+.intro-about-wrap img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .intro-wrap{
@@ -148,6 +180,10 @@ a button{
     font-weight: var(--sage-font-weight);
     text-align: center;
     padding-bottom: 32px;
+}
+
+.about-title{
+    margin-top: 132px;
 }
 
 .services-image{
