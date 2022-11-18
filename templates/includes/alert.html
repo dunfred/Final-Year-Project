@@ -1,5 +1,7 @@
 {% load static %}
 
+{% if error %}
+
 <!-- Error message pop up. The styling can be found in the global CSS -->
 <div class="error-card-container">
     <div class="error-card">
@@ -7,3 +9,4 @@
         <div class="error-card-message">{{ error }}</div>
     </div>
 </div>
+{% endif %}

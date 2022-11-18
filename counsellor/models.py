@@ -170,4 +170,4 @@ class Consent(TimeStampMixin, models.Model):
     guardian_phone      = models.CharField(_("Guardian Phone"), max_length=10, blank=True, null=True, help_text=GUARDIAN_HELP_TEXT)
 
     def __str__(self):
-        return f"{self.user}: {self.counselor}"
+        return f"{self.user}"
