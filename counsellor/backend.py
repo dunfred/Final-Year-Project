@@ -8,6 +8,7 @@ class MultipleAuthBackend(ModelBackend):
             user_model = Counsellor
         else:
             user_model = User
+        
 
         if username is None:
             username = kwargs.get(user_model.USERNAME_FIELD)

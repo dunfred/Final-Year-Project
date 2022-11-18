@@ -18,12 +18,12 @@
             
         </ul>
     </nav> 
-     
+    
     <section class="landingpage-container">
             <section class="intro">
                 <div class="intro-wrap">
                     <div class="intro-title">
-                        Experience Counselling Services from the University of Cape Coast
+                        University of Cape Coast Counselling Services
                     </div>
                     <a  href="{% url 'counsellor:register_client' %}">
                         <button class="register">Register</button>
@@ -44,10 +44,10 @@
                     <div class="work-detail">Every voter you add to your poll is given a unique voting key. No intruder can participate without a unique key. 
                     </div>
                 </div>   
-        </section>             -->
+        </section> -->
         <section class="services">
             <h1 class="services-title">Our Services</h1>
-            <div class="services-wrap">
+            {% comment %} <div class="services-wrap">
                 <div class="services-image">
                     <img src="{% static 'images/depressed.jpg' %}" alt="mockup">
                 </div>
@@ -61,7 +61,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
+
             <div class="services-wrap reverse-card">
                 <div class="services-image">
                     <img src="{% static 'images/doctor.jpg' %}" alt="mockup">
@@ -77,21 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="services-wrap">
-                <div class="services-image">
-                    <img src="{% static 'images/dude.jpg' %}" alt="mockup">
-                </div>
-                <div class="services-detail">
-                    <div class="services-detail-wrap">
-                        <div class="services-detail-title">
-                            Expert consultations
-                        </div>
-                        <div class="services-detail-info">We consult on issues from marrigae to mental and academical issues. 
-                            We have expert consultants who have dealt with lots of issues and had positive results.
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </section>
 
         <section class="features">
@@ -187,7 +174,7 @@
             <a href="{% url 'counsellor:support' %}">Support</a></li>
         </ul> 
         <div class="footer-copyright">
-            © University of Capecoast 2022
+            © UCC, Department of Computer Science and IT 2022
         </div>
     </footer>  
     
