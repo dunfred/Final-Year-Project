@@ -79,7 +79,7 @@ label {
 .intro{
     display: flex;
     align-items: center;
-    background-image: url(../images/ucc-gate-01.jpg);
+    background-image: url(../images/sad.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
@@ -162,7 +162,7 @@ a button{
 }
 
 .goal-title{
-    font-size: 28px;
+    font-size: 21px;
     width: 100%;
     font-weight: 700;
     z-index: 1;
@@ -345,7 +345,7 @@ a button{
     
     .intro-title{
         font-size: var(--sage-font-size);
-        width: 50%;
+        width: 70%;
     }
     
     .register{
@@ -359,7 +359,7 @@ a button{
     }
 
     .goal-title{
-        font-size: var(--title-font-size);
+        font-size: 30px;
         width: 100%;
         padding: 160px;
     }

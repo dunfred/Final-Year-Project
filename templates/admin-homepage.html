@@ -10,7 +10,8 @@
 <body>
     <div class="homepage-nav">
         <div class="page-nav">
-            <a href="{% url 'counsellor:index' %}" class="page-logo"><img src="{% static 'images/logo.png' %}" alt="logo"/></a>
+            <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'favicon/our-logo.svg' %}" alt="Dev logo"/></a>
+            <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'images/logo.png' %}" alt="UCC counsellor logo"/></a>
             <ul class="user-profile-wrap">
                 <li class="user-profile"><a href="#">Profile</a></li> 
                 {% if request.user.is_authenticated %}
