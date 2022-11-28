@@ -6,6 +6,7 @@
 <body>
     <nav>
         <div class="logo-wrap">
+            <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'favicon/our-logo.svg' %}" alt="Dev logo"/></a>
             <a href="{% url 'counsellor:index' %}" class="landing-page-logo"><img src="{% static 'images/logo.png' %}" alt="UCC counsellor logo"/></a>
             <div class="logo-title">UCC Counselling Service</div>
         </div>
@@ -14,7 +15,9 @@
         </label>
         <input type="checkbox" id="toggle">
         <ul class="menu">
-            <li><a href="{% url 'counsellor:about' %}">About</a></li>
+            <!-- <li><a href="{% url 'counsellor:about' %}">About</a></li> -->
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Our Services</a></li>
             <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>
         </ul>
     </nav> 
@@ -38,7 +41,7 @@
                     </div>
                 </div>
             </section>    
-        <section class="services">
+        <section class="services" id="about">
             <h1 class="services-title">About Us</h1>
             <div class="services-wrap reverse-card">
                 <div class="services-image">
@@ -47,17 +50,20 @@
                 <div class="services-detail">
                     <div class="services-detail-wrap">
                         <div class="services-detail-title">
-                            DEPARTMENT OF GUIDANCE AND COUNSELING
+                           GUIDANCE AND COUNSELING UNIT
                         </div>
-                        <div class="services-detail-info">We consult on all types of Academic Issues, from mental health to Career choices. 
-                            We have expert consultants who have dealt with lots of issues and solved them with maximum performance.
+                        <div class="services-detail-info">An online counselling platform purposed to 
+                            deliver counselling services. Consultation services are available to all students 
+                            in the University of Cape Coast. We consult on all types of Academic Issues, 
+                            from mental health to Career choices. We have expert consultants with years 
+                            of experience to offer quality services to students.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="features">
+        <section class="features" id="services">
             <h1 class="features-title">Our Services</h1>
             <div class="features-flex">
                 <div class="features-wrap">
@@ -138,12 +144,11 @@
     
     <footer>
         <ul class="footer-links">
-            <li>
-            <a href="{% url 'counsellor:about' %}">About</a></li>
-            <li>
-            <a href="{% url 'counsellor:conditions' %}">Terms & Conditions</a></li>
-              <li>
-            <a href="{% url 'counsellor:support' %}">Support</a></li>
+            <!-- <li><a href="{% url 'counsellor:about' %}">About</a></li>
+            <li><a href="{% url 'counsellor:conditions' %}">Our Services</a></li> -->
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="{% url 'counsellor:login_client' %}">Login</a></li>
         </ul> 
         <div class="footer-copyright">
             © UCC, Department of Computer Science and IT 2022
