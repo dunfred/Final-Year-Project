@@ -3,7 +3,7 @@ body{
     height: 100vh;
     /* color: var(--sage-bg-black); */
 }
-
+ 
 .wrapper{
     min-height: 100vh;
     display: flex;
@@ -81,7 +81,15 @@ body{
 /*Responsive Desktop view*/
 @media only screen and (min-width: 768px){
     .wrapper{
-      position: relative;
+        display: flex;
+        align-items: center;
+        background-image: url(../images/doctor-dark.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
     }
 
     .brand-text{

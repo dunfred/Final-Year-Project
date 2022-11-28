@@ -12,7 +12,7 @@ body{
 }
 
 .container{
-    padding: 40px;
+    padding: 32px;
     border-radius: 0px;
     width: 100%;
 }
@@ -81,41 +81,15 @@ body{
 /*Responsive Desktop view*/
 @media only screen and (min-width: 768px){
     .wrapper{
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .brand-text{
-        display: block;
-        position: absolute;
-        left: 60px;
-        top: 60px;
-        font-size: 24px; 
-        font-weight: 500;
-        color: #1d252d;
-    }
-    
-    .vector-image{
-        display: block;
-        position: absolute;
-        left: 60px;
-        bottom: 50px;
-    }
-    
-    .vector-image img{
-        width: 90%;
-    }
-
-    form{
-        position: relative;
-    }
-
-    .layout{
+        display: flex;
+        align-items: center;
+        background-image: url(../images/doctor-dark.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
         width: 100%;
-        margin-bottom: 25px;
+        overflow: hidden;
+        position: relative;
     }
 }
 
@@ -129,17 +103,6 @@ body{
     
 /*Responsive Tablet view*/
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .brand-text{
-        display: none;
-    }
-    
-    .vector-image{
-        display: none;
-    }
-    
-    .container{
-        position: relative;
-        right: 0;
-    }
+
 }
     
